@@ -2,13 +2,14 @@ window.onload = () => {
     // insert values to coords
     const longitude = 21.265328; // <- insert here
     const latitude = 48.759925;  // <- insert here
-    manageModelVisibility();
+    manageModelVisibility(latitude, longitude);
 };
 
 function createModel(lat, long) {
     let model = document.createElement('a-entity');
     model.setAttribute('gltf-model', './minimickey.glb');
     model.setAttribute('scale', `2 2 2`);
+    model.setAttribute('position', `0 10 0`);
     model.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long};`);
 
     return model;
