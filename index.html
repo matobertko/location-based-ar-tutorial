@@ -22,9 +22,16 @@
         embedded
         arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
         <a-camera gps-camera rotation-reader></a-camera>
+        <a-entity 
+            gltf-model="./church.glb" 
+            rotation="0 180 0" 
+            scale="0.5 0.5 0.5" 
+            gps-entity-place="longitude: 16.593243; latitude: 49.210428;" 
+            />
+
     </a-scene>
     <div class="centered">
-        <button data-action="change"></button>
+        <button data-action="change">i</button>
     </div>
 
 
