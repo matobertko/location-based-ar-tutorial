@@ -6,10 +6,15 @@ window.onload = () => {
 };
 
 function createModel(lat, long) {
+    // let model = document.createElement('a-entity');
+    // model.setAttribute('gltf-model', './minimickey.glb');
+    // model.setAttribute('scale', `2 2 2`);
+    // model.setAttribute('position', `0 10 0`);
+    // model.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long};`);
     let model = document.createElement('a-entity');
-    model.setAttribute('gltf-model', './minimickey.glb');
-    model.setAttribute('scale', `2 2 2`);
-    model.setAttribute('position', `0 10 0`);
+    model.setAttribute('gltf-model', './church.glb');
+    model.setAttribute('scale', `0.5 0.5 0.5`);
+    model.setAttribute('rotation', `0 90 0`);
     model.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long};`);
 
     return model;
