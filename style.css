@@ -1,6 +1,6 @@
 .centered {
     height: 20%;
-    justify-content: center;
+    justify-content:right;
     position: fixed;
     bottom: 0%;
     display: flex;
@@ -11,7 +11,7 @@
     right: 0;
 }
 
-button {
+/* button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,12 +24,38 @@ button {
     background-color: rgba(0, 0, 0, 0.4);
     color: white;
     outline: none;
-}
+} */
 
-.instructions {
-    position: fixed;
-    top: 5%;
-    font-size: 1.25em;
-    color: white;
-    z-index: 999999;
+
+
+
+
+
+
+/* < !-- HTML !--><button class="button-47" role="button">Button 47</button> */
+
+/* CSS */
+button {
+    align-items: center;
+    background:  rgba(255, 255, 255);
+    border: 0 solid #E2E8F0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    color: #1A202C;
+    display: inline-flex;
+    font-family: Inter, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    height: 56px;
+    justify-content: center;
+    line-height: 24px;
+    overflow-wrap: break-word;
+    padding: 24px;
+    text-decoration: none;
+    width: auto;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
