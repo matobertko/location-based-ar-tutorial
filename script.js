@@ -12,10 +12,11 @@ function createModel(lat, long) {
     // model.setAttribute('position', `0 10 0`);
     // model.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long};`);
     let model = document.createElement('a-entity');
-    model.setAttribute('gltf-model', './church.glb');
-    model.setAttribute('scale', `0.5 0.5 0.5`);
-    model.setAttribute('rotation', `0 90 0`);
-    model.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long};`);
+    model.setAttribute('gltf-model', './sign_fontana.glb');
+    model.setAttribute('scale', "1 1 1");
+    entity.setAttribute("look-at", "[camera]");
+    // model.setAttribute('rotation', `0 90 0`);
+    model.setAttribute('gps-entity-place', 'latitude: ${lat}; longitude: ${long};');
 
     return model;
 }
