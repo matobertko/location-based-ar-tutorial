@@ -1,5 +1,5 @@
 window.onload = () => {
-    var scene = document.querySelector('a-scene');
+    let scene = document.querySelector('a-scene');
 
     let showSigns = false;
     
@@ -31,7 +31,7 @@ window.onload = () => {
 // }
 
 
-function manageSignsVisibility(showSigns) {
+function manageSignsVisibility(scene, showSigns) {
     var signEntities = scene.querySelectorAll('.sign');
     for (var i = 0; i < signEntities.length; i++) {
         signEntities[i].setAttribute("visible", showSigns.toString());
