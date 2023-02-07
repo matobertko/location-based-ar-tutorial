@@ -21,20 +21,53 @@
     <a-scene 
         vr-mode-ui='enabled: false' 
         embedded
-        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
-        <a-camera gps-camera rotation-reader></a-camera>
-        <!-- <a-entity 
+        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'
+    >
+        <!-- garbage -->
+        <!-- 
+        <a-entity 
             gltf-model="./church.glb" 
             rotation="0 180 0" 
             scale="0.5 0.5 0.5" 
             gps-entity-place="longitude: 21.265328; latitude: 48.759925;" 
-            /> -->
-            <a-entity 
-                gltf-model="./model_krizovatky3.glb" 
-                scale="1 1 1"
-                gps-entity-place="longitude: 21.265328; latitude: 48.759925;" 
-            /><!-- position="0 10 0" -->
+        /> 
+        -->
+        <!-- position="0 10 0" -->
 
+
+        <!-- signs -->
+        <a-entity 
+            class="signs"
+            gltf-model="./assets/sign1.glb" 
+            visible="false"
+            look-at="[gps-camera]"
+            gps-entity-place="longitude: 21.265328; latitude: 48.759925;" 
+        />
+
+        <a-entity 
+            class="signs"
+            gltf-model="./assets/sign2.glb" 
+            visible="false"
+            look-at="[gps-camera]"
+            gps-entity-place="longitude: 21.265328; latitude: 48.759925;" 
+        />
+
+        <a-entity 
+            class="signs"
+            gltf-model="./assets/sign3.glb" 
+            visible="false"
+            look-at="[gps-camera]"
+            gps-entity-place="longitude: 21.265328; latitude: 48.759925;" 
+        />
+
+        <!-- crossroad -->
+        <a-entity 
+            gltf-model="./model_krizovatky3.glb" 
+            gps-entity-place="longitude: 21.265328; latitude: 48.759925;" 
+        />
+
+        <!-- camera -->
+        <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
 
     <div class="centered">
