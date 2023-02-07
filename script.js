@@ -37,7 +37,7 @@ function createSigns(scene, countOfSigns, lat, long) {
         // create entity
         let signEntity = document.createElement("a-entity");
         signEntity.setAttribute('class', 'sign');
-        signEntity.setAttribute('gltf-model', './assets/sign${objIdx}.glb');
+        signEntity.setAttribute('gltf-model', `./assets/sign${objIdx}.glb`);
         signEntity.setAttribute('visible', 'false');
         signEntity.setAttribute('look-at', '[gps-camera]');
         signEntity.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long};`);
