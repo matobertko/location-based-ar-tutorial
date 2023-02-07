@@ -6,7 +6,7 @@ window.onload = () => {
     let button = document.querySelector('button[data-action="change"]')
     button.addEventListener('click', function(e) {
         showSigns = !showSigns;
-        manageModelsVisibility(scene, showSigns);
+        manageSignsVisibility(scene, showSigns);
     });
 };
 
