@@ -1,6 +1,8 @@
 window.onload = () => {
     let scene = document.querySelector('a-scene');
 
+    createSigns(scene, 8);
+
     let showSigns = false;
     
     let button = document.querySelector('button[data-action="change"]')
@@ -11,24 +13,26 @@ window.onload = () => {
 };
 
 
-// function createSignEntity(objIdx) {
-//     // ------ coords ----------
-//     let latitude = 49.210930;
-//     let longitude = 16.594155;
-//     // kounicova> 49.210930, 16.594155
+function createSigns(scene, countOfSigns) {
+    // ---------- coords ----------
+    let latitude = 49.210930;
+    let longitude = 16.594155;
+    // kounicova> 49.210930, 16.594155
 
-//     // ------ new entity ----------
-//     // class="signs"
-//     // gltf-model="./assets/sign6.glb" 
-//     // visible="false"
-//     // look-at="[gps-camera]"
-//     // gps-entity-place="longitude: 21.265328; latitude: 48.759925;" 
-//     let entity = document.createElement("a-entity");
-    
-//     model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+    // ------ new entity ----------
+    for (let objIdx = 1; objIdx <= countOfSigns; objIdx++) {
+        // create entity
+        let signEntity = document.createElement("a-entity");
+        signEntity.setAttribute('class', 'sign');
+        signEntity.setAttribute('gltf-model', `./assets/sign${objIdx}.glb`);
+        signEntity.setAttribute('visible', 'false');
+        signEntity.setAttribute('look-at', '[gps-camera]');
+        signEntity.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 
-//     scene.appendChild(entity);
-// }
+        // insert entity into the scene
+        scene.appendChild(signEntity);
+    }    
+}
 
 
 function manageSignsVisibility(scene, showSigns) {
