@@ -2,9 +2,10 @@ window.onload = () => {
     let scene = document.querySelector('a-scene');
 
     // ---------- coords ----------
-    // kounicova> 49.210930, 16.594155
-    let latitude = 49.210930;
-    let longitude = 16.594155; 
+    // kounicova vzadu> 49.210930, 16.594155
+    // kounicova predu> 49.210444, 16.593347
+    let latitude = 49.210444;
+    let longitude = 16.593347; 
 
     // --- create entities --------
     createCrossroad(scene, latitude, longitude);
