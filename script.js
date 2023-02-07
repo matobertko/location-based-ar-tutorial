@@ -3,7 +3,7 @@ window.onload = () => {
 
     // ---------- coords ----------
     // kounicova vzadu> 49.210930, 16.594155
-    // kounicova predu> 49.210444, 16.593347
+    // kounicova predu> 49.210444, 16.593347++
     let latitude = 49.210444;
     let longitude = 16.593347; 
 
