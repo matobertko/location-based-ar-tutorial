@@ -3,7 +3,7 @@ window.onload = () => {
 
     // ---------- coords ----------
     // kounicova vzadu> 49.210930, 16.594155
-    // kounicova predu> 49.210444, 16.593347++
+    // kounicova predu> 49.210444, 16.593347
     let latitude = 49.210444;
     let longitude = 16.593347; 
 
@@ -25,7 +25,7 @@ function createCrossroad(scene, lat, long) {
     // create entity
     let crossroadEntity = document.createElement("a-entity");
     crossroadEntity.setAttribute('class', 'crossroad');
-    crossroadEntity.setAttribute('gltf-model', './assets/model_krizovatky3.glb');
+    crossroadEntity.setAttribute('gltf-model', './assets/minimickey.glb');
     crossroadEntity.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long};`);
     
     // insert entity into the scene
