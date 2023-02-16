@@ -4,24 +4,22 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Križovatka Křídlovická</title>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script>
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script> 
-    <!-- <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script> -->
-        <!-- for animation -->
-    <!-- <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>   -->
-    <!-- <script> THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/' </script> -->
-    <script src="./script.js"></script>
+
+    <!-- SCRIPTS -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> <!-- A-Frame itself -->
+    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script> <!-- Pure three.js code that the A-Frame components use for location-based AR -->
+    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>  <!-- AR.js A-Frame components -->
+
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./style.css"/>
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
-    <!-- <div class="centered instructions"></div> -->
 
     <a-scene 
         vr-mode-ui='enabled: false' 
         embedded
-        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'
+        arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
         renderer="logarithmicDepthBuffer: true;"
     >
         <!-- signs -->
