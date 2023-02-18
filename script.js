@@ -7,16 +7,18 @@ window.onload = () => {
     // kounicova billa> 49.210201, 16.593625
     const latitude = 49.210201;
     const longitude = 16.593625; 
+    console.log('after coords');
 
     // --- create entities --------
     createCrossroad(scene, latitude, longitude);
     createSigns(scene, 8, latitude, longitude);
     
-    // ----- manage signs --------
+    // ----- manage signs ---------
     let showSigns = false;
-    let button = document.querySelector('button[data-action="change"]')
+    let button = document.querySelector('button[data-action="change"]');
     button.addEventListener('click', function(e) {
         showSigns = !showSigns;
+        console.log('button clicked' + showSigns.toString());
         manageSignsVisibility(scene, showSigns);
     });
 };
@@ -32,6 +34,8 @@ function createCrossroad(scene, lat, long) {
     
     // insert entity into the scene
     scene.appendChild(crossroadEntity);
+
+    console.log('created crossroad');
 }
 
 
@@ -47,6 +51,7 @@ function createSigns(scene, countOfSigns, lat, long) {
 
         // insert entity into the scene
         scene.appendChild(signEntity);
+        console.log('created signs');
     }    
 }
 
