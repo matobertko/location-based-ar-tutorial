@@ -24,13 +24,17 @@
         renderer="logarithmicDepthBuffer: true;"
     >
         <!-- camera -->
-        <a-camera 
+        <!-- <a-camera 
             id='camera1' 
             look-controls-enabled='false' 
             arjs-look-controls='smoothingFactor: 0.1' 
             gps-projected-camera='gpsMinDistance: 2'> 
+        </a-camera> -->
+        <a-camera 
+            gps-new-camera='gpsMinDistance: 2' 
+            look-controls-enabled='false' 
+            arjs-device-orientation-controls='smoothingFactor: 0.1'>
         </a-camera>
-        <!-- <a-camera gps-new-camera='gpsMinDistance: 2' look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1'></a-camera> -->
     </a-scene>
 
     <div class="centered">
