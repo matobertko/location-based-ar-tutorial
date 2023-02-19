@@ -31,7 +31,7 @@ function createCrossroad(scene, lat, long) {
     crossroadEntity.setAttribute('gltf-model', './assets/model_krizovatky3.glb');
     // crossroadEntity.setAttribute('look-at', '[gps-camera]');
     // crossroadEntity.setAttribute('gps-new-entity-place', `latitude: ${lat}; longitude: ${long}`);
-    crossroadEntity.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
+    crossroadEntity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
 
     
     // insert entity into the scene
@@ -50,7 +50,7 @@ function createSigns(scene, countOfSigns, lat, long) {
         signEntity.setAttribute('visible', 'false');
         // signEntity.setAttribute('look-at', '[gps-camera]');
         // signEntity.setAttribute('gps-new-entity-place', `latitude: ${lat}; longitude: ${long}`);
-        signEntity.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
+        signEntity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
 
 
         // insert entity into the scene
