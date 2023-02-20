@@ -5,8 +5,9 @@ window.onload = () => {
     // kounicova vzadu> 49.210930, 16.594155
     // kounicova predu> 49.210444, 16.593347
     // kounicova billa> 49.210201, 16.593625
-    const latitude = 49.210201;
-    const longitude = 16.593625; 
+    // batanicka skola> 49.2097608, 16.5985181
+    const latitude = 49.2097608;
+    const longitude = 16.5985181; 
     console.log('after coords');
 
     // --- create entities --------
