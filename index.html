@@ -24,11 +24,16 @@
         arjs='sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
         renderer="logarithmicDepthBuffer: true;"
     >
-        <a-camera 
+        <!-- <a-camera 
             gps-new-camera='gpsMinDistance: 2' 
             look-controls-enabled='false' 
             arjs-device-orientation-controls='smoothingFactor: 0.1'
             rotation-reader>
+        </a-camera> -->
+        <a-camera 
+            look-controls-enabled='false' 
+            arjs-look-controls='smoothingFactor: 0.1' 
+            gps-projected-camera='gpsMinDistance: 2'> 
         </a-camera>
     </a-scene>
 
