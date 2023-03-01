@@ -6,9 +6,9 @@ window.onload = () => {
     // kounicova predu> 49.210444, 16.593347
     // k. billa  vlavo> 49.210201, 16.593625
     // k. billa vpravo> 49.210445, 16.593361
-    // batanicka skola> 49.2097608, 16.5985181
-    const latitude = 49.2097608;
-    const longitude = 16.5985181;
+    // botanicka skola> 49.2097608, 16.5985181
+    const latitude = 49.210445;
+    const longitude = 16.593361;
     console.log('after coords');
 
     // --- create entities --------
@@ -27,11 +27,11 @@ window.onload = () => {
 
 
 function createCrossroad(scene, lat, long) {
-    // create entity
+    // create entity and initialize it
     let crossroadEntity = document.createElement("a-entity");
     crossroadEntity.setAttribute('class', 'crossroad');
     crossroadEntity.setAttribute('gltf-model', './assets/model_krizovatky5.glb');
-    crossroadEntity.setAttribute('position', '0 -0.5 0');
+    crossroadEntity.setAttribute('position', '0 0 0');
     crossroadEntity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
     
     // insert entity into the scene

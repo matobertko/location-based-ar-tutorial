@@ -30,12 +30,17 @@
             arjs-device-orientation-controls='smoothingFactor: 0.1'
             rotation-reader>
         </a-camera> -->
-        <a-camera 
-            look-controls-enabled='false' 
-            near="0.05"
-            arjs-look-controls='smoothingFactor: 0.1' 
-            gps-projected-camera='gpsMinDistance: 2'> 
-        </a-camera>
+        <!-- near="0.1" 
+            far="50000" 
+            fov="80" -->
+        <a-entity id="rig" position="0 0.5 0">
+            <a-camera 
+                rotation-reader
+                look-controls-enabled='false' 
+                arjs-look-controls='smoothingFactor: 0.1' 
+                gps-projected-camera='gpsMinDistance: 2'> 
+            </a-camera>
+    </a-entity>
     </a-scene>
 
     <div class="centered">
