@@ -30,7 +30,7 @@ function createCrossroad(scene, lat, long) {
     // create entity and initialize it
     let crossroadEntity = document.createElement("a-entity");
     crossroadEntity.setAttribute('class', 'crossroad');
-    crossroadEntity.setAttribute('gltf-model', './assets/model_krizovatky7.glb');
+    crossroadEntity.setAttribute('gltf-model', './assets/model_krizovatky7uncompressedremeshed.glb');
     crossroadEntity.setAttribute('position', '0 0 0');
     crossroadEntity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
     
