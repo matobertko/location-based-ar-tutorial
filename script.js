@@ -18,7 +18,7 @@ window.onload = () => {
     // ----- manage signs ---------
     let showSigns = false;
     var signButton = document.getElementById('signButton');
-    signButton.onclick = signVisibilityManager(showSigns);
+    signButton.onclick = signVisibilityManager(scene, showSigns);
 };
 
 
@@ -26,7 +26,7 @@ function createCrossroad(scene, lat, long) {
     // create entity and initialize it
     let crossroadEntity = document.createElement("a-entity");
     crossroadEntity.setAttribute('class', 'crossroad');
-    crossroadEntity.setAttribute('gltf-model', './assets/model_krizovatky5.glb');
+    crossroadEntity.setAttribute('gltf-model', './assets/model_krizovatky7.glb');
     crossroadEntity.setAttribute('position', '0 0 0');
     crossroadEntity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
     
@@ -55,7 +55,7 @@ function createSigns(scene, countOfSigns, lat, long) {
 }
 
 
-function signVisibilityManager(showSigns) {
+function signVisibilityManager(scene, showSigns) {
     showSigns = !showSigns;
     console.log('button clicked' + showSigns.toString());
     var signEntities = scene.querySelectorAll('.sign');
