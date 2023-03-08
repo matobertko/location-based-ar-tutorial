@@ -17,8 +17,12 @@ window.onload = () => {
     
     // ----- manage signs ---------
     let showSigns = false;
-    var signButton = document.getElementById('signButton');
-    signButton.onclick = signVisibilityManager(scene, showSigns);
+    let button = document.querySelector('button[data-action="change"]');
+    button.addEventListener('click', function(e) {
+        showSigns = !showSigns;
+        console.log('button clicked' + showSigns.toString());
+        manageSignsVisibility(scene, showSigns);
+    });
 };
 
 
@@ -55,11 +59,9 @@ function createSigns(scene, countOfSigns, lat, long) {
 }
 
 
-function signVisibilityManager(scene, showSigns) {
-    showSigns = !showSigns;
-    console.log('button clicked' + showSigns.toString());
+function manageSignsVisibility(scene, showSigns) {
     var signEntities = scene.querySelectorAll('.sign');
     for (var i = 0; i < signEntities.length; i++) {
         signEntities[i].setAttribute("visible", showSigns.toString());
     }
-};
+}
