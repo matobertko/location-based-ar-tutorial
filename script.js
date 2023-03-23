@@ -1,67 +1,97 @@
+//  *************
+//  DELETE LOGS
+//  DELETE COORDS
+//  *************
+// show the loading popup
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('loading-popup').style.display = 'block';
+});
+
 window.onload = () => {
+    //document.getElementById('loading-popup').style.display = 'none';
+
     let scene = document.querySelector('a-scene');
 
-    // ---------- coords ----------
+    // -------- coords ------------------------
     // kounicova vzadu> 49.210930, 16.594155
     // kounicova predu> 49.210444, 16.593347
     // k. billa  vlavo> 49.210201, 16.593625
     // k. billa vpravo> 49.210445, 16.593361
     // botanicka skola> 49.2097608, 16.5985181
-    const latitude = 49.2097608; 
-    const longitude = 16.5985181;
-    console.log('after coords');
+    const LAT = 49.2097608; 
+    const LONG = 16.5985181;
 
-    // --- create entities --------
-    createCrossroad(scene, latitude, longitude);
-    createSigns(scene, 8, latitude, longitude);
-    
-    // ----- manage signs ---------
-    let showSigns = false;
-    let button = document.querySelector('button[data-action="change"]');
-    button.addEventListener('click', function(e) {
-        showSigns = !showSigns;
-        console.log('button clicked' + showSigns.toString());
-        manageSignsVisibility(scene, showSigns);
+    // -------- create entities ---------------
+    let crossroad = createEntity(scene, LAT, LONG, './assets/kridlovicka2.glb');
+    crossroad.setAttribute("visible", 'true');
+
+    crossroad.addEventListener('loaded', () => {
+        // Hide loading popup
+        //loadingPopupEl.setAttribute('a-loading', 'enabled', false);
+        console.log("model loaded");
+        document.getElementById('loading-popup').style.display = 'none';
+
+      });
+
+    let trees = createEntity(scene, LAT, LONG, './assets/trees.glb');
+
+    let building = createEntity(scene, LAT, LONG, './assets/building_floors.glb');
+
+    let singsCollection = createSigns(scene, 8, LAT, LONG);
+
+    console.log('after entity creation');
+
+    // -------- manage BUTTONS ----------------
+    let buttonInfo = document.querySelector('#buttonInfo');
+    buttonInfo.addEventListener('click', function(e) {
+        singsCollection.forEach(element => {
+            switchVisibility(element);
+        });
     });
+
+    let buttonTrees = document.querySelector('#buttonTree');
+    buttonTrees.addEventListener('click', switchVisibility.bind(null, trees));
+
+    let buttonBuilding = document.querySelector('#buttonBuil');
+    buttonBuilding.addEventListener('click', switchVisibility.bind(null, building));
+
+    // -------- manage loading popup ----------
 };
 
-
-function createCrossroad(scene, lat, long) {
-    // create entity and initialize it
-    let crossroadEntity = document.createElement("a-entity");
-    crossroadEntity.setAttribute('class', 'crossroad');
-    crossroadEntity.setAttribute('gltf-model', './assets/model_krizovatky5.glb');
-    crossroadEntity.setAttribute('position', '0 0 0');
-    crossroadEntity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
+// -------- CREATE ENTITIES -------------------
+function createEntity(scene, lat, long, asset) {
+    // create entity and initialize itff
+    let entity = document.createElement("a-entity");
+    entity.setAttribute('gltf-model', asset);
+    entity.setAttribute('visible', 'false');
+    entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
     
     // insert entity into the scene
-    scene.appendChild(crossroadEntity);
+    scene.appendChild(entity);
 
-    console.log('created crossroad');
+    // console.log('created ' + asset);
+
+    // return entity
+    return entity;
 }
-
 
 function createSigns(scene, countOfSigns, lat, long) {
+    let signsCollection = [];
     for (let objIdx = 1; objIdx <= countOfSigns; objIdx++) {
-        // create entity
-        let signEntity = document.createElement("a-entity");
-        signEntity.setAttribute('class', 'sign');
-        signEntity.setAttribute('gltf-model', `./assets/sign${objIdx}.glb`);
-        signEntity.setAttribute('visible', 'false');
+        let signEntity = createEntity(scene, lat, long, `./assets/sign${objIdx}.glb`);
         signEntity.setAttribute('look-at', '[gps-projected-camera]');
-        signEntity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
+        signsCollection.push(signEntity);
+    }   
+    // console.log('created signs');
 
-
-        // insert entity into the scene
-        scene.appendChild(signEntity);
-        console.log('created signs');
-    }    
+    // return entity collection
+    return signsCollection;
 }
 
+// -------- ENTITY VISIBILITY SWITCHER --------
 
-function manageSignsVisibility(scene, showSigns) {
-    var signEntities = scene.querySelectorAll('.sign');
-    for (var i = 0; i < signEntities.length; i++) {
-        signEntities[i].setAttribute("visible", showSigns.toString());
-    }
+function switchVisibility(asset) {
+    let visibleAttrValue = asset.getAttribute("visible");
+    // console.log('button ' + asset + (!visibleAttrValue).toString());
+    asset.setAttribute("visible", (!visibleAttrValue).toString());
 }
