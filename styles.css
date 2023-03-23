@@ -1,0 +1,119 @@
+/* -------------- BODY, HEADLINES, PARAGRAPHS ------------- */
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    margin: 0;
+  }
+  
+  body > *:not(h1) {
+    margin: 2% 15%;
+  }
+  
+  h1 {
+    background-color: #DA2128;
+    color: white;
+    text-align: center;
+    font-size: 60px;
+    padding: 15px;
+    margin: 0;
+  }
+  
+  h2 {
+    color: #DA2128;
+    padding: 20px 10px 5px 10px;
+  }
+  
+  p {
+    padding: 00px 50px;
+    text-align: justify;
+  }
+  
+  /* ------------------ TRIANGLE AFTER H1 ------------------- */
+  .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0px 20px 20px 20px;
+    border-color: transparent transparent #DA2128 transparent;
+    transform: rotate(180deg);
+    margin: auto;
+  }
+  
+  /* ------------------ LIST STYLING ------------------------ */
+  ol {
+    list-style: none; /*dont show original numbers*/
+    padding: 0px 50px;
+  }
+  
+  li {
+    border-bottom: 1px solid #bbbbbb;
+    position: relative;
+    padding: 10px 50px;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  li::before {
+    content: counter(list-item);
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #666666;
+    color: white;
+    font-weight: bold;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    /* top and transform for aligning the circle to the center */
+  }
+  
+  /* Remove border from last list item */
+  li:last-child {
+      border-bottom: none;
+    }
+    
+  .item-title {
+    cursor: pointer; /*sets the cursor style to a pointing hand*/
+    font-weight: bold;
+  }
+  
+  .item-description {
+    display: none;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: justify;
+    word-wrap: break-word;
+  }
+  
+  .item-description.open {
+    display: block;
+  }
+  
+  /* ------------------ BUTTONS SHOWCASE -------------------- */
+  .buttons-showcase {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .button-container {
+    flex-basis: calc(33.33% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .button-text {
+    text-align: center;
+  }
+  
+  img {
+    max-width: 30%;
+    height: auto;
+    border-radius: 50%;
+  }
+  

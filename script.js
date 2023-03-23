@@ -79,7 +79,7 @@ function createSigns(scene, countOfSigns, lat, long) {
     let signsCollection = [];
     for (let objIdx = 1; objIdx <= countOfSigns; objIdx++) {
         let signEntity = createEntity(scene, lat, long, `./assets/sign${objIdx}.glb`);
-        signEntity.setAttribute('look-at', '[gps-projected-camera]');
+        //signEntity.setAttribute('look-at', '[gps-projected-camera]');
         signsCollection.push(signEntity);
     }   
     // console.log('created signs');

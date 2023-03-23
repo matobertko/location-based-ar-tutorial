@@ -1,45 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Križovatka Křídlovická</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brno v AR</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Font+Name&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <!-- SCRIPTS -->
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> <!-- A-Frame itself -->
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> <!-- for aframe look at comp. -->
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script> <!-- Pure three.js code that the A-Frame components use for location-based AR -->
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>  <!-- AR.js A-Frame components -->
-    <script type="text/javascript" src="./script.js"></script>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="./style.css"/>
-
-    <!-- FAVICON -->
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<body>
+    <!-- HEADER -->
+    <h1>Brno v AR</h1>
+    <div class="triangle"></div>
 
-<body>    
+    <!-- SPUSTENIE MODELU -->
+    <h2>Spustenie AR modelu</h2>
+    <ol class="item-list">
+        <li>
+            <div class="item-title">Zapnite GPS</div>
+            <div class="item-description">Pre kvalitnejší výsledok vykalibrujte GPS, napr. v aplikácii Google Maps.</div>
+        </li>
+        <li>
+            <div class="item-title">Otvorte jeden z prehliadačov: Chrome, Mozilla Firefox</div>
+            <div class="item-description">Iné typy prehliadačov nemajú garantovanú použiteľnosť.</div>
+        </li>
+        <li>
+            <div class="item-title">
+                Kliknite na toto tlačidlo <button onclick="copyToClipboard()"><i class="fa fa-copy"></i></button> a spustite skopírovaný odkaz v prehliadači
+            </div>
+            <div class="item-description">Alebo použite tento odkaz: https://matobertko.github.io/location-based-ar-tutorial/app.html</div>
+        </li>
+        <li>
+            <div class="item-title">Povoľte prehliadaču prístup k polohe a kamere</div>
+            <div class="item-description">
+                Povolenia sú nutné na najlepšie zobrazenie modelu. 
+                Povolenie GPS lokácie slúži na presné umistnenie modela do križovatky 
+                a povolenie kamery na zobrazenie modela v mobilnom zariadení.
+                Táto stránka nikdy neukladá a nikdy nebude ukladať informácie polohe či prípadne ukladať záznam z kamery zariadenia.
+            </div>
+        </li>
+        <li>
+            <div class="item-title">Prechádzajte sa po námestí</div>
+            <div class="item-description">V prípade nejasností alebo problémoch so samotnou stránkou môžete nájsť pomoc v spodnej časti častých otázok a odpovedí,
+                prípadne nás kontaktovať mailom. Kontaktné údaje sú v spodnej časti stránky.</div>
+        </li>
+    </ol>   
 
-      
-    <a-scene 
-        vr-mode-ui='enabled: false' 
-        embedded
-        arjs='sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
-        renderer="logarithmicDepthBuffer: true; antialias: true;">
-
-        <a-camera 
-            near="0.05"
-            look-controls-enabled='false' 
-            arjs-look-controls='smoothingFactor: 0.1' 
-            gps-projected-camera='gpsMinDistance: 5'>  
-        </a-camera>
-        
-    </a-scene>
-
-    <div class="button-container">
-        <button id="buttonInfo"></button>
-        <button id="buttonTree"></button>
-        <button id="buttonBuil"></button>
+    <!-- OVLADANIE MODELU -->
+    <h2>Ovládanie modelu</h2>
+    <p>Model dokážete ovládať pomocou týchto tlačidiel:</p>  
+    <div class="buttons-showcase">
+      <div class="button-container">
+        <img src="infoButton.png" alt="tlačidlo pre informácie">
+        <p class="button-text">významné prvky modelu</p>
+      </div>
+      <div class="button-container">
+        <img src="treeButton.png" alt="tlačidlo pre stromy">
+        <p class="button-text">zobrazenie stromov</p>
+      </div>
+      <div class="button-container">
+        <img src="buildingButton.png" alt="tlačidlo pre budovu">
+        <p class="button-text">zobrazenie návrhu budúcej budovy</p>
+      </div>
     </div>
+    
+    
+
+    <!-- FAQ -->
+    <h2>Časté otázky a odpovede</h2>
+    <ol class="item-list">
+        <li>
+          <div class="item-title">model sa nezobrazuje vôbec</div>
+          <div class="item-description">riešenie 1</div>
+        </li>
+        <li>
+          <div class="item-title">model sa nezobrazuje správne</div>
+          <div class="item-description">riešenie 2</div>
+        </li>
+        <li>
+          <div class="item-title">model neustále mení pozíciu</div>
+          <div class="item-description">Skontroluje kvalitu GPS signálu, prípadne je skúste vykalibrovať, napríklad pomocou aplikácie Google Maps.</div>
+        </li>
+    </ol>   
+
+    <!-- ABOUT -->
+    <h2>O projekte</h2>
+    <p>Tento model vzikol vrámci bakalárskej práce Fakulty informatiky Masarykovej univerzity v roku 2023.</p>
+
+    <script src="interaction.js"></script>
 </body>
+</html>
