@@ -29,8 +29,9 @@ window.onload = () => {
     // k. billa  vlavo> 49.210201, 16.593625
     // k. billa vpravo> 49.210445, 16.593361
     // botanicka skola> 49.2097608, 16.5985181
-    let latitude = 49.2097608; 
-    let longitude = 16.5985181;
+    // kridlovicka 49.188374, 16.597964
+    let latitude = 49.188374; 
+    let longitude = 16.597964;
 
     // -------- create entities ---------------
     let crossroad = createEntity(scene, latitude, longitude, './assets/kridlovicka2.glb');
