@@ -88,7 +88,7 @@ window.onload = () => {
     // TODO
 
     // -------- handle rejected camera usage --
-    navigator.mediaDevices.getUserMedia({ video: true })
+    /*navigator.mediaDevices.getUserMedia({ video: true })
         .then(() => {})
         .catch((error) => {
             if (error.name === 'NotFoundError') {
@@ -100,7 +100,7 @@ window.onload = () => {
             
             let sky = scene.querySelector('a-sky');
             sky.setAttribute('visible', 'true');
-    });
+    });*/
 };
 
 // -------- CREATE ENTITIES -------------------
