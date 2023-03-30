@@ -2,16 +2,23 @@
 body {
     margin: 0;
     overflow:hidden;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 13pt;
     /* overflow for not rolling the screen - otherwise it will scroll */
 }
 
-/* ----------------------- BUTTONS ------------------------ */
+p {
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+/* -------------- VISUALISATION BUTTONS ------------------- */
 .button-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    height: 80%;
+    height: 90%;
     right: 0; /* put column to the right border of the page*/
     position: fixed;
     top: 0;
@@ -26,9 +33,9 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 30px;
-    width: 70px;
-    height: 70px;
+    margin: 20px;
+    width: 60px;
+    height: 60px;
 }
 
 #buttonInfo {
@@ -44,6 +51,35 @@ button {
 #buttonBuil {
     background-image: url("buildingButton.png");
     background-size: cover;
+}
+
+/* ------------------ RADIO BUTTONS ----------------------- */
+.radio-button-container {
+  margin: 20px;
+  position: fixed;
+  top: 0;
+  /* position + fixed -> cont. will be fixed to the top of the viewport
+   and will not be affected by the overflow property on the body */
+}
+
+input {
+  appearance: none;
+  border-radius: 50%;
+  background: #bbbbbb;
+  border: 0px;
+  width: 30px;
+  height: 30px;
+  vertical-align:middle;
+}
+
+input:checked {
+  background-color: #666666;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 20px;
+  vertical-align:middle;
 }
 
 /* ---------- LOADING POPUP ------------------- */

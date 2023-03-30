@@ -28,10 +28,11 @@
         arjs='sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
         renderer="logarithmicDepthBuffer: true; antialias: true;">
 
+        <a-sky src="epping_forest_01_1k.jpg" visible="false"></a-sky>
+
         <a-camera 
-            position="0 1.5 0"
-            near="0.05"
-            zoom="0.9"
+            position="0 1.8 0"
+            near="0.005"
             rotation-reader="true"
             look-controls-enabled='false' 
             arjs-look-controls='smoothingFactor: 0.1' 
@@ -39,6 +40,13 @@
         </a-camera>
 
     </a-scene>
+    <div class="radio-button-container">
+        <p>Vyberte si miesto zobrazenia modelu:</p>
+        <input type="radio" id="original" name="location" value="ORIGINAL">
+        <label for="original">Křídlovická</label>
+        <input type="radio" id="current" name="location" value="CURRENT">
+        <label for="current">Moja poloha</label>
+    </div>
 
     <div class="button-container">
         <button id="buttonInfo"></button>
