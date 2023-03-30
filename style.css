@@ -56,6 +56,8 @@ button {
 /* ------------------ RADIO BUTTONS ----------------------- */
 .radio-button-container {
   margin: 20px;
+  max-width: calc(100vw - 40px);
+  left: 0;
   position: fixed;
   top: 0;
   /* position + fixed -> cont. will be fixed to the top of the viewport

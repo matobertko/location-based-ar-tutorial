@@ -13,12 +13,15 @@ window.onload = () => {
     let scene = document.querySelector('a-scene');
 
     // -------- handle rejected camera usage --
-    if (!navigator.mediaDevices || 
+    /*if (!navigator.mediaDevices || 
         !navigator.mediaDevices.getUserMedia || 
         navigator.mediaDevices.getUserMedia({ video: true })) {
         let sky = document.querySelector('a-sky');
         sky.setAttribute('visible', 'true');
-    }
+    }*/
+
+
+
 
     // -------- coords ------------------------
     // kounicova vzadu> 49.210930, 16.594155
@@ -83,6 +86,21 @@ window.onload = () => {
     // -------- manage loading popup ----------
 
     // TODO
+
+    // -------- handle rejected camera usage --
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(() => {})
+        .catch((error) => {
+            if (error.name === 'NotFoundError') {
+                console.log('Device does not have a camera.');
+            }
+            if (error.name === 'NotAllowedError') {
+                console.log('User denied the camera access.');
+            }
+            
+            let sky = scene.querySelector('a-sky');
+            sky.setAttribute('visible', 'true');
+    });
 };
 
 // -------- CREATE ENTITIES -------------------
