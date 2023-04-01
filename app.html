@@ -7,7 +7,6 @@
 
     <!-- SCRIPTS -->
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> <!-- A-Frame itself -->
-     <!--<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> for aframe look at comp. -->
     <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script> <!-- Pure three.js code that the A-Frame components use for location-based AR -->
     <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>  <!-- AR.js A-Frame components -->
     <script type="text/javascript" src="./script.js"></script>
@@ -20,15 +19,15 @@
 </head>
 
 <body>    
-
-      
     <a-scene 
         vr-mode-ui='enabled: false' 
         embedded
         arjs='sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
         renderer="logarithmicDepthBuffer: true; antialias: true;">
 
-        <!-- <a-sky src="epping_forest_01_1k.jpg" visible="false"></a-sky> -->
+        <a-light type="ambient" intensity="0.9"></a-light>
+        <a-light type="directional" position="-1 1 -0.4" intensity="0.9"></a-light> 
+        <a-sky src="kridlovicka_HDRI.jpg" material="visible: false"  rotation="0 170 0"></a-sky>
 
         <a-camera 
             position="0 1.8 0"
@@ -40,17 +39,26 @@
         </a-camera>
 
     </a-scene>
-    <div class="radio-button-container">
+
+    <div id="popup" class="popup">
+        <p><b>Vyberte si miesto zobrazenia modelu:</b></p>
+        <div class="popup-buttons-container">
+            <button class="popup-button" onclick="showOnOriginal()">Poloha na križovatke Křídlovická</button>
+            <button class="popup-button" onclick="showOnUsers()">Moja aktuálna poloha</button>
+        </div>
+    </div>
+
+    <!-- <div class="radio-button-container">
         <p>Vyberte si miesto zobrazenia modelu:</p>
         <input type="radio" id="original" name="location" value="ORIGINAL">
         <label for="original">Křídlovická</label>
         <input type="radio" id="current" name="location" value="CURRENT">
         <label for="current">Moja poloha</label>
-    </div>
+    </div> -->
 
-    <div class="button-container">
-        <button id="buttonInfo"></button>
-        <button id="buttonTree"></button>
-        <button id="buttonBuil"></button>
+    <div class="visualisation-button-container">
+        <button class="visualisation-button" id="buttonInfo"></button>
+        <button class="visualisation-button" id="buttonTree"></button>
+        <button class="visualisation-button" id="buttonBuil"></button>
     </div>
 </body>

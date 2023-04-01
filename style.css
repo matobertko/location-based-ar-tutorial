@@ -1,4 +1,6 @@
-/* ----------------------- BODY --------------------------- */
+/* -------------------------------------------------------- */
+/* ----------------- BODY and PARAGRAPHS ------------------ */
+/* -------------------------------------------------------- */
 body {
     margin: 0;
     overflow:hidden;
@@ -12,21 +14,66 @@ p {
   margin-bottom: 10px;
 }
 
+
+/* -------------------------------------------------------- */
+/* ------------------- LOCATION POPUP --------------------- */
+/* -------------------------------------------------------- */
+.popup {
+  padding: 10px;
+  color: #666;
+  background-color: #bbbbbb;
+  /* box-shadow: 0 0 50px rgba(187, 187, 187, 1); */
+  text-align: center;
+  /* ↓ center the popup horizontally and vertically ↓ */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup-buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-button {
+  background-color: white;
+  color: #666666;
+  border: 3px solid #bbbbbb;
+  border-radius: 10px;
+  margin: 3px;                
+  padding: 10px;
+}
+
+.popup-button:hover {
+  border: 3px solid #666666;
+  font-weight: bold;
+}
+
+.popup-button:active {
+  background-color: #666666;
+  color: white;
+  font-weight: bold;
+}
+
+
+/* -------------------------------------------------------- */
 /* -------------- VISUALISATION BUTTONS ------------------- */
-.button-container {
+/* -------------------------------------------------------- */
+.visualisation-button-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
     height: 90%;
-    right: 0; /* put column to the right border of the page*/
+    right: 0;
     position: fixed;
     top: 0;
     /* position + fixed -> cont. will be fixed to the top of the viewport
      and will not be affected by the overflow property on the body */
 }
 
-button {
+.visualisation-button {
     border-style: none;
     border-radius: 50%;
     text-align: center;
@@ -53,15 +100,13 @@ button {
     background-size: cover;
 }
 
+
 /* ------------------ RADIO BUTTONS ----------------------- */
-.radio-button-container {
+/*.radio-button-container {
   margin: 20px;
   max-width: calc(100vw - 40px);
   left: 0;
   position: fixed;
-  top: 0;
-  /* position + fixed -> cont. will be fixed to the top of the viewport
-   and will not be affected by the overflow property on the body */
 }
 
 input {
@@ -82,7 +127,7 @@ label {
   font-weight: bold;
   margin-right: 20px;
   vertical-align:middle;
-}
+}*/
 
 /* ---------- LOADING POPUP ------------------- */
 

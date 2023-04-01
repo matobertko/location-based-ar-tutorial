@@ -7,30 +7,37 @@
 //     document.getElementById('loading-popup').style.display = 'block';
 // });
 
+
+// -------- coords ------------------------
+// kounicova vzadu> 49.210930, 16.594155
+// kounicova predu> 49.210444, 16.593347
+// k. billa  vlavo> 49.210201, 16.593625
+// k. billa vpravo> 49.210445, 16.593361
+// botanicka skola> 49.2097608, 16.5985181
+// kridlovicka 49.188374, 16.597964
+
+
+var latitude = 49.188374; 
+var longitude = 16.597964;
+
+// when all HTML doc. is loaded
 window.onload = () => {
-    //document.getElementById('loading-popup').style.display = 'none';
+    // ------------ DECIDE GPS COORDINATES
+    showPopup();
+
     
-    let scene = document.querySelector('a-scene');
+    
+    //document.getElementById('loading-popup').style.display = 'none';
+
+    // ------------- get SCENE element --------
+    var scene = document.querySelector('a-scene');
 
     // -------- handle rejected camera usage --
-    /*if (!navigator.mediaDevices || 
-        !navigator.mediaDevices.getUserMedia || 
-        navigator.mediaDevices.getUserMedia({ video: true })) {
-        let sky = document.querySelector('a-sky');
-        sky.setAttribute('visible', 'true');
-    }*/
+    camPermissionHandler(scene);
 
-
-
-
-    // -------- coords ------------------------
-    // kounicova vzadu> 49.210930, 16.594155
-    // kounicova predu> 49.210444, 16.593347
-    // k. billa  vlavo> 49.210201, 16.593625
-    // k. billa vpravo> 49.210445, 16.593361
-    // botanicka skola> 49.2097608, 16.5985181
-    let latitude = 49.2097608; 
-    let longitude = 16.5985181;
+    navigator.mediaDevices.ondevicechange = function() {
+        camPermissionHandler(scene);
+    };   
 
     // -------- create entities ---------------
     let crossroad = createEntity(scene, latitude, longitude, './assets/kridlovicka2.glb');
@@ -72,23 +79,29 @@ window.onload = () => {
     buttonBuilding.addEventListener('click', switchVisibility.bind(null, building));
 
     // -------- manage RADIO BUTTONS ----------
-    document.querySelector('#original').addEventListener("click", function() {
-        switchGPSCoords(scene, latitude, longitude);
-        // console.log(latitude + ';' + longitude + 'original');
-    });
+    // document.querySelector('#original').addEventListener("click", function() {
+    //     switchGPSCoords(scene, latitude, longitude);
+    // });
     
-    document.querySelector('#current').addEventListener("click", function() {
-        let [lat, long] = getNewGPSCoords(latitude, longitude);
-        switchGPSCoords(scene, lat, long);
-        // console.log(lat + ';' + long + 'current');
-    });
+    // document.querySelector('#current').addEventListener("click", function() {
+    //     let [lat, long] = getNewGPSCoords(latitude, longitude);
+    //     switchGPSCoords(scene, lat, long);
+    // });
     
     // -------- manage loading popup ----------
 
     // TODO
+};
 
-    // -------- handle rejected camera usage --
-    /*navigator.mediaDevices.getUserMedia({ video: true })
+// --------------------------------------------------------------------------
+//                          FUNCTIONS
+//                      commenting: /** */
+// --------------------------------------------------------------------------
+
+
+// -------- CAMERA PERRMISSON -----------------
+function camPermissionHandler(scene) {
+    navigator.mediaDevices.getUserMedia({ video: true })
         .then(() => {})
         .catch((error) => {
             if (error.name === 'NotFoundError') {
@@ -99,9 +112,79 @@ window.onload = () => {
             }
             
             let sky = scene.querySelector('a-sky');
-            sky.setAttribute('visible', 'true');
-    });*/
-};
+            sky.setAttribute('material', 'visible', true);
+        });
+}
+
+
+// ------------- POPUP ------------------------
+
+
+function showPopup() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'block';
+}
+
+function showOnOriginal() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'none';
+    alert('coordinates:' + latitude + '; ' + longitude);
+}
+
+function showOnUsers() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'none';
+    [lati, longi] = getNewGPSCoords(latitude, longitude);
+    alert('coordinates:' + lati + '; ' + longi);
+}
+
+function getNewGPSCoords(lat, long) {
+    // if ("geolocation" in navigator) {
+    //     navigator.geolocation.getCurrentPosition(function(position) {
+    //       lat = position.coords.latitude;
+    //       long = position.coords.longitude;
+    //       alert(lat + '; ' + long+'4645654');
+    //     }, function() {
+    //         console.log("Cannot get GPS coordinates");
+    //         lat = 49;
+    //         long = 16;
+    //     });
+    // } else {
+    //     console.log("This browser does not support GPS.");
+    //     lat = 49;
+    //     long = 16;
+    // }
+
+
+    // return [lat, long];
+    let GPSCoordsRetrieved = false;
+
+    const camera = document.querySelector("[gps-projected-camera]");
+    
+    camera.addEventListener("gps-camera-update-position", e => {
+        if(!GPSCoordsRetrieved) {
+            lat = e.detail.position.latitude;
+            long = e.detail.position.longitude;
+            alert(`Got first GPS position: lon ${long} lat ${lat}`);
+            // Add a box to the north of the initial GPS position
+            const entity = document.createElement("a-box");
+            entity.setAttribute("scale", {
+                x: 20, 
+                y: 20,
+                z: 20
+            });
+            entity.setAttribute('material', { color: 'red' } );
+            entity.setAttribute('gps-new-entity-place', {
+                latitude: e.detail.position.latitude + 0.001,
+                longitude: e.detail.position.longitude
+            });
+            document.querySelector("a-scene").appendChild(entity);
+        }
+        GPSCoordsRetrieved = true;
+    });
+
+    return [lat, long];
+}
 
 // -------- CREATE ENTITIES -------------------
 function createEntity(scene, lat, long, asset) {
@@ -129,30 +212,32 @@ function createSigns(scene, countOfSigns, lat, long) {
 }
 
 // ------- ENTITY GPS LOCATION SWITCHER -------
-function getNewGPSCoords(lat, long) {
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          lat = position.coords.latitude;
-          long = position.coords.longitude;
-        }, function() {
-            console.log("Cannot get GPS coordinates");
-        });
-    } else {
-        console.log("This browser does not support GPS.");
-    }
+// function getNewGPSCoords(lat, long) {
+//     if ("geolocation" in navigator) {
+//         navigator.geolocation.getCurrentPosition(function(position) {
+//           lat = position.coords.latitude;
+//           long = position.coords.longitude;
+//         }, function() {
+//             console.log("Cannot get GPS coordinates");
+//         });
+//     } else {
+//         console.log("This browser does not support GPS.");
+//     }
 
-    return [lat, long];
-}
+//     return [lat, long];
+// }
 
-function switchGPSCoords(scene, lat, long) {
-    let entities = scene.querySelectorAll("a-entity");
+// function switchGPSCoords(scene, lat, long) {
+//     let entities = scene.querySelectorAll("a-entity");
 
-    entities.forEach((entity) => {
-        entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
-    });
+//     console.log(entities);
 
-    console.log("Coordinates were switched");
-}
+//     entities.forEach((entity) => {
+//         entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
+//     });
+
+//     console.log("Coordinates were switched");
+// }
 
 // -------- ENTITY VISIBILITY SWITCHER --------
 function switchVisibility(asset) {
