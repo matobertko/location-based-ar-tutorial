@@ -104,7 +104,9 @@ function camPermissionHandler(scene) {
     let sky = scene.querySelector('a-sky');
     navigator.mediaDevices.getUserMedia({ video: true })
         .then(() => {
-            sky.setAttribute('visible', false);
+            if (sky != null) {
+                sky.remove();
+            } 
         })
         .catch((error) => {
             if (error.name === 'NotFoundError') {
@@ -113,7 +115,12 @@ function camPermissionHandler(scene) {
             if (error.name === 'NotAllowedError') {
                 console.log('User denied the camera access.');
             }
-            sky.setAttribute('visible', true);
+            if (sky == null) {
+                sky = document.createElement("a-sky");
+                sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
+                sky.setAttribute('rotation', '0 170 0');
+                scene.appendChild(sky);
+            } 
         });
 }
 
