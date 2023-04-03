@@ -104,7 +104,7 @@ function camPermissionHandler(scene) {
     let sky = scene.querySelector('a-sky');
     navigator.mediaDevices.getUserMedia({ video: true })
         .then(() => {
-            sky.setAttribute('material', 'visible', false);
+            sky.setAttribute('visible', false);
         })
         .catch((error) => {
             if (error.name === 'NotFoundError') {
@@ -113,7 +113,7 @@ function camPermissionHandler(scene) {
             if (error.name === 'NotAllowedError') {
                 console.log('User denied the camera access.');
             }
-            sky.setAttribute('material', 'visible', true);
+            sky.setAttribute('visible', true);
         });
 }
 
@@ -195,6 +195,7 @@ function createEntity(scene, lat, long, asset) {
     let entity = document.createElement("a-entity");
     entity.setAttribute('gltf-model', asset);
     entity.setAttribute('visible', 'false');
+    entity.setAttribute('position', '0 -1 0');
     entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
     
     // insert entity into the scene
