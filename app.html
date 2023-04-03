@@ -19,6 +19,11 @@
 </head>
 
 <body>    
+
+    <!-- <div class="arjs-loader">
+        <div>Loading, please wait...</div>
+    </div> -->
+
     <a-scene 
         vr-mode-ui='enabled: false' 
         embedded
@@ -30,9 +35,10 @@
         <a-sky src="kridlovicka_HDRI.jpg" material="visible: false"  rotation="0 170 0"></a-sky>
 
         <a-camera 
-            position="0 1.8 0"
+            position="0 1.5 0"
             near="0.005"
-            rotation-reader="true"
+            rotation-reader
+            vertical-controls
             look-controls-enabled='false' 
             arjs-look-controls='smoothingFactor: 0.1' 
             gps-projected-camera='gpsMinDistance: 5'>  
