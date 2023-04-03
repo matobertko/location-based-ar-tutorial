@@ -101,8 +101,11 @@ window.onload = () => {
 
 // -------- CAMERA PERRMISSON -----------------
 function camPermissionHandler(scene) {
+    let sky = scene.querySelector('a-sky');
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then(() => {})
+        .then(() => {
+            sky.setAttribute('material', 'visible', false);
+        })
         .catch((error) => {
             if (error.name === 'NotFoundError') {
                 console.log('Device does not have a camera.');
@@ -110,8 +113,6 @@ function camPermissionHandler(scene) {
             if (error.name === 'NotAllowedError') {
                 console.log('User denied the camera access.');
             }
-            
-            let sky = scene.querySelector('a-sky');
             sky.setAttribute('material', 'visible', true);
         });
 }
@@ -162,6 +163,7 @@ function getNewGPSCoords(lat, long) {
     const camera = document.querySelector("[gps-projected-camera]");
     
     camera.addEventListener("gps-camera-update-position", e => {
+        console.log("nasli sme cameru");
         if(!GPSCoordsRetrieved) {
             lat = e.detail.position.latitude;
             long = e.detail.position.longitude;
@@ -183,6 +185,7 @@ function getNewGPSCoords(lat, long) {
         GPSCoordsRetrieved = true;
     });
 
+    console.log("vraciam" + lat + "--" + long);
     return [lat, long];
 }
 
