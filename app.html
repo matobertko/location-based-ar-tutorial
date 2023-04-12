@@ -30,15 +30,15 @@
         arjs='sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
         renderer="logarithmicDepthBuffer: true; antialias: true;">
 
-        <a-light type="ambient" intensity="0.9"></a-light>
-        <a-light type="directional" position="-1 1 -0.4" intensity="0.9"></a-light> 
+        <!-- <a-light type="ambient" intensity="0.9"></a-light>
+        <a-light type="directional" position="-1 1 -0.4" intensity="0.9"></a-light>  -->
 
         <a-camera 
             position="0 1.8 0"
-            near="0.001"
-            rotation-reader
+            near="0.005"
+            rotation-reader="true"
             look-controls-enabled='false' 
-            arjs-look-controls='smoothingFactor: 0.2' 
+            arjs-look-controls='smoothingFactor: 0.1' 
             gps-projected-camera='gpsMinDistance: 5'>  
         </a-camera>
 
