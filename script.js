@@ -25,22 +25,20 @@ window.onload = () => {
     // ------------ DECIDE GPS COORDINATES
     showPopup();
 
-    
-    
     //document.getElementById('loading-popup').style.display = 'none';
 
     // ------------- get SCENE element --------
     var scene = document.querySelector('a-scene');
 
     // -------- handle rejected camera usage --
-    camPermissionHandler(scene);
+    createFakeSky(scene);
 
-    navigator.mediaDevices.ondevicechange = function() {
-        camPermissionHandler(scene);
-    };   
+    // navigator.mediaDevices.ondevicechange = function() {
+    //     camPermissionHandler(scene);
+    // };   
 
     // -------- create entities ---------------
-    let crossroad = createEntity(scene, latitude, longitude, './assets/kridlovicka2.glb');
+    let crossroad = createEntity(scene, latitude, longitude, './assets/testCrossroad.glb');
     crossroad.setAttribute("visible", 'true');
 
     // crossroad.addEventListener('loaded', () => {
@@ -99,28 +97,18 @@ window.onload = () => {
 // --------------------------------------------------------------------------
 
 
-// -------- CAMERA PERRMISSON -----------------
-function camPermissionHandler(scene) {
-    let sky = scene.querySelector('a-sky');
+// -------- unavailableCamera -----------------
+function createFakeSky(scene) {
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then(() => {
-            if (sky != null) {
-                sky.remove();
-            } 
-        })
+        .then(() => {})
         .catch((error) => {
             if (error.name === 'NotFoundError') {
                 console.log('Device does not have a camera.');
-            }
-            if (error.name === 'NotAllowedError') {
-                console.log('User denied the camera access.');
-            }
-            if (sky == null) {
                 sky = document.createElement("a-sky");
                 sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
                 sky.setAttribute('rotation', '0 170 0');
                 scene.appendChild(sky);
-            } 
+            }
         });
 }
 
@@ -136,14 +124,13 @@ function showPopup() {
 function showOnOriginal() {
     var popup = document.getElementById('popup');
     popup.style.display = 'none';
-    alert('coordinates:' + latitude + '; ' + longitude);
 }
 
 function showOnUsers() {
     var popup = document.getElementById('popup');
     popup.style.display = 'none';
     [lati, longi] = getNewGPSCoords(latitude, longitude);
-    alert('coordinates:' + lati + '; ' + longi);
+    switchGPSCoords(lati, longi);
 }
 
 function getNewGPSCoords(lat, long) {
@@ -170,7 +157,7 @@ function getNewGPSCoords(lat, long) {
     const camera = document.querySelector("[gps-projected-camera]");
     
     camera.addEventListener("gps-camera-update-position", e => {
-        console.log("nasli sme cameru");
+        console.log("nasli sme GPS");
         if(!GPSCoordsRetrieved) {
             lat = e.detail.position.latitude;
             long = e.detail.position.longitude;
@@ -183,16 +170,18 @@ function getNewGPSCoords(lat, long) {
                 z: 20
             });
             entity.setAttribute('material', { color: 'red' } );
-            entity.setAttribute('gps-new-entity-place', {
-                latitude: e.detail.position.latitude + 0.001,
-                longitude: e.detail.position.longitude
+            entity.setAttribute('gps-projected-entity-place', {
+                latitude: lat + 0.001,
+                longitude: long
             });
             document.querySelector("a-scene").appendChild(entity);
         }
         GPSCoordsRetrieved = true;
+
+        alert('coordinates:' + lat + '; ' + long);
     });
 
-    console.log("vraciam" + lat + "--" + long);
+    console.log("vraciam: " + lat + " -- " + long);
     return [lat, long];
 }
 
@@ -202,7 +191,6 @@ function createEntity(scene, lat, long, asset) {
     let entity = document.createElement("a-entity");
     entity.setAttribute('gltf-model', asset);
     entity.setAttribute('visible', 'false');
-    entity.setAttribute('position', '0 -1 0');
     entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
     
     // insert entity into the scene
@@ -238,17 +226,14 @@ function createSigns(scene, countOfSigns, lat, long) {
 //     return [lat, long];
 // }
 
-// function switchGPSCoords(scene, lat, long) {
-//     let entities = scene.querySelectorAll("a-entity");
+function switchGPSCoords(lat, long) {
+    let entities = document.querySelector("a-scene").querySelectorAll("a-entity");
+    entities.forEach((entity) => {
+        entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
+    });
 
-//     console.log(entities);
-
-//     entities.forEach((entity) => {
-//         entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
-//     });
-
-//     console.log("Coordinates were switched");
-// }
+    console.log("Coordinates were switched");
+}
 
 // -------- ENTITY VISIBILITY SWITCHER --------
 function switchVisibility(asset) {
