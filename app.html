@@ -32,6 +32,19 @@
 
         <!-- <a-light type="ambient" intensity="0.9"></a-light>
         <a-light type="directional" position="-1 1 -0.4" intensity="0.9"></a-light>  -->
+        <a-entity 
+            gltf-model="./assets/minimickey.glb" 
+            gps-projected-entity-place="latitude: 49.188374; longitude: 16.597964"
+            position="0 1 0">
+        </a-entity>
+        
+        <a-entity 
+            material='color: red' 
+            geometry='primitive: cylinder'
+            gps-new-entity-place="latitude: 49.188374; longitude: 16.597964"
+            position="0 10 0"
+            scale="5 5 5">
+        </a-entity>
 
         <a-camera 
             position="0 1.8 0"
