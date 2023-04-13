@@ -1,4 +1,6 @@
-/* ----------------------- BODY --------------------------- */
+/* -------------------------------------------------------- */
+/* ----------------- BODY and PARAGRAPHS ------------------ */
+/* -------------------------------------------------------- */
 body {
   margin: 0;
   overflow:hidden;
@@ -12,21 +14,66 @@ margin: 0px;
 margin-bottom: 10px;
 }
 
+
+/* -------------------------------------------------------- */
+/* ------------------- LOCATION POPUP --------------------- */
+/* -------------------------------------------------------- */
+.popup {
+padding: 10px;
+color: #666;
+background-color: #bbbbbb;
+/* box-shadow: 0 0 50px rgba(187, 187, 187, 1); */
+text-align: center;
+/* ↓ center the popup horizontally and vertically ↓ */
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.popup-buttons-container {
+display: flex;
+flex-direction: column;
+}
+
+.popup-button {
+background-color: white;
+color: #666666;
+border: 3px solid #bbbbbb;
+border-radius: 10px;
+margin: 3px;                
+padding: 10px;
+}
+
+.popup-button:hover {
+border: 3px solid #666666;
+font-weight: bold;
+}
+
+.popup-button:active {
+background-color: #666666;
+color: white;
+font-weight: bold;
+}
+
+
+/* -------------------------------------------------------- */
 /* -------------- VISUALISATION BUTTONS ------------------- */
-.button-container {
+/* -------------------------------------------------------- */
+.visualisation-button-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
   height: 90%;
-  right: 0; /* put column to the right border of the page*/
+  right: 0;
   position: fixed;
   top: 0;
   /* position + fixed -> cont. will be fixed to the top of the viewport
    and will not be affected by the overflow property on the body */
 }
 
-button {
+.visualisation-button {
   border-style: none;
   border-radius: 50%;
   text-align: center;
@@ -36,6 +83,8 @@ button {
   margin: 20px;
   width: 60px;
   height: 60px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
 }
 
 #buttonInfo {
@@ -53,17 +102,14 @@ button {
   background-size: cover;
 }
 
+
 /* ------------------ RADIO BUTTONS ----------------------- */
-.radio-button-container {
+/*.radio-button-container {
 margin: 20px;
 max-width: calc(100vw - 40px);
 left: 0;
 position: fixed;
-top: 0;
-/* position + fixed -> cont. will be fixed to the top of the viewport
- and will not be affected by the overflow property on the body */
 }
-
 input {
 appearance: none;
 border-radius: 50%;
@@ -73,120 +119,85 @@ width: 30px;
 height: 30px;
 vertical-align:middle;
 }
-
 input:checked {
 background-color: #666666;
 }
-
 label {
 font-weight: bold;
 margin-right: 20px;
 vertical-align:middle;
-}
- 
-
-/* ------------------ RADIO BUTTONS ----------------------- */
-/*.radio-button-container {
-  margin: 20px;
-  max-width: calc(100vw - 40px);
-  left: 0;
-  position: fixed;
-}
-
-input {
-  appearance: none;
-  border-radius: 50%;
-  background: #bbbbbb;
-  border: 0px;
-  width: 30px;
-  height: 30px;
-  vertical-align:middle;
-}
-
-input:checked {
-  background-color: #666666;
-}
-
-label {
-  font-weight: bold;
-  margin-right: 20px;
-  vertical-align:middle;
 }*/
 
 /* ---------- LOADING POPUP ------------------- */
 
 /* .arjs-loader {
-  height: 100%;
-  width: 100%;
-  position: absolute;
+height: 100%;
+width: 100%;
+position: absolute;
+top: 0;
+left: 0;
+background-color: rgba(0, 0, 0, 0.8);
+z-index: 9999;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.arjs-loader div {
+text-align: center;
+font-size: 1.25em;
+color: white;
+} */
+
+/*
+#loading-popup {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+opacity: 0.7;
+z-index: 9999;
+padding: 20px;
+border-radius: 10px;
+}
+#loading-popup p {
+margin: 0;
+text-align: center;
+}
+#loadingPopup {
+  position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.arjs-loader div {
-  text-align: center;
-  font-size: 1.25em;
-  color: white;
-} */
-
-/*
-#loading-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  opacity: 0.7;
-  z-index: 9999;
-  padding: 20px;
-  border-radius: 10px;
+.loading-text {
+  color: #fff;
+  font-size: 20px;
+  margin-right: 10px;
 }
 
-#loading-popup p {
-  margin: 0;
-  text-align: center;
+#loadingPopup > span {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-top-color: #4CAF50;
+  animation: spin 1s ease-in-out infinite;
 }
 
-#loadingPopup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .loading-text {
-    color: #fff;
-    font-size: 20px;
-    margin-right: 10px;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  #loadingPopup > span {
-    display: block;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 5px solid #fff;
-    border-top-color: #4CAF50;
-    animation: spin 1s ease-in-out infinite;
-  }
-  
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }*/
-  
+}*/
