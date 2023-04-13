@@ -34,7 +34,7 @@ window.onload = () => {
     }  
 
     // -------- create entities ---------------
-    let crossroad = createEntity(scene, latitude, longitude, './assets/testCrossroad.glb');
+    let crossroad = createEntity(scene, latitude, longitude, './assets/kridlovicka3.glb');
     crossroad.setAttribute("visible", 'true');
 
     // crossroad.addEventListener('loaded', () => {
@@ -96,7 +96,6 @@ window.onload = () => {
 
     
     // -------- handle rejected camera usage --
-    createFakeSky(scene);
 
     //createFakeSky(scene);
 
