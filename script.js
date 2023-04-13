@@ -34,7 +34,7 @@ window.onload = () => {
     }
 
     // -------- handle rejected camera usage --
-    // createFakeSky(scene);
+    createFakeSky(scene);
 
     // navigator.mediaDevices.ondevicechange = function() {
     //     camPermissionHandler(scene);
@@ -109,19 +109,19 @@ window.onload = () => {
 
 
 // -------- unavailableCamera -----------------
-// function createFakeSky(scene) {
-//     navigator.mediaDevices.getUserMedia({ video: true })
-//         .then(() => {})
-//         .catch((error) => {
-//             if (error.name === 'NotFoundError') {
-//                 console.log('Device does not have a camera.');
-//                 sky = document.createElement("a-sky");
-//                 sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
-//                 sky.setAttribute('rotation', '0 170 0');
-//                 scene.appendChild(sky);
-//             }
-//         });
-// }
+function createFakeSky(scene) {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(() => {})
+        .catch((error) => {
+            if (error.name === 'NotFoundError') {
+                console.log('Device does not have a camera.');
+                sky = document.createElement("a-sky");
+                sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
+                sky.setAttribute('rotation', '0 170 0');
+                scene.appendChild(sky);
+            }
+        });
+}
 
 
 // ------------- POPUP ------------------------
