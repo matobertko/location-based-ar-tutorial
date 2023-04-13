@@ -31,14 +31,7 @@ window.onload = () => {
     } else {
         console.log('Zobrazujem na polohe uzivatela');
         useUsersGPSCoords(scene);
-    }
-
-    // -------- handle rejected camera usage --
-    createFakeSky(scene);
-
-    // navigator.mediaDevices.ondevicechange = function() {
-    //     camPermissionHandler(scene);
-    // };   
+    }  
 
     // -------- create entities ---------------
     let crossroad = createEntity(scene, latitude, longitude, './assets/testCrossroad.glb');
@@ -100,6 +93,18 @@ window.onload = () => {
     // -------- manage loading popup ----------
 
     // TODO
+
+    
+    // -------- handle rejected camera usage --
+    scene.addEventListener('loaded', function () {
+        createFakeSky(scene);
+    });
+
+    //createFakeSky(scene);
+
+    // navigator.mediaDevices.ondevicechange = function() {
+    //     camPermissionHandler(scene);
+    // }; 
 };
 
 // --------------------------------------------------------------------------
