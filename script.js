@@ -96,9 +96,7 @@ window.onload = () => {
 
     
     // -------- handle rejected camera usage --
-    scene.addEventListener('loaded', function () {
-        createFakeSky(scene);
-    });
+    createFakeSky(scene);
 
     //createFakeSky(scene);
 
@@ -115,11 +113,18 @@ window.onload = () => {
 
 // -------- unavailableCamera -----------------
 function createFakeSky(scene) {
+    let sky = scene.querySelector('a-sky');
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then(() => {})
+        .then(() => {
+            if (sky) {
+                sky.remove();
+            } 
+        })
         .catch((error) => {
             if (error.name === 'NotFoundError') {
                 console.log('Device does not have a camera.');
+            }
+            if (sky == null) {
                 sky = document.createElement("a-sky");
                 sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
                 sky.setAttribute('rotation', '0 170 0');
