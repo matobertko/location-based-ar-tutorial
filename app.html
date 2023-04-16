@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Križovatka Křídlovická</title>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Križovatka Křídlovická</title>
 
-    <!-- SCRIPTS -->
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> <!-- A-Frame itself -->
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.4/three.js/build/ar-threex-location-only.js'></script> <!-- Pure three.js code that the A-Frame components use for location-based AR -->
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.4/aframe/build/aframe-ar.js'></script>  <!-- AR.js A-Frame components -->
-    <script type="text/javascript" src="./script.js"></script>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="./style.css"/>
+        <!-- SCRIPTS -->
+        <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script> <!-- A-Frame itself -->
+        <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.4/three.js/build/ar-threex-location-only.js'></script> <!-- Pure three.js code that the A-Frame components use for location-based AR -->
+        <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.4/aframe/build/aframe-ar.js'></script>  <!-- AR.js A-Frame components -->
+        <script type="text/javascript" src="./script.js"></script>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="./style.css"/>
 
-    <!-- FAVICON -->
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
-</head>
+        <!-- FAVICON -->
+        <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    </head>
 
-<body>    
+    <body>    
 
-    <!-- <div class="arjs-loader">
-        <div>Loading, please wait...</div>
-    </div> -->
+        <!-- <div class="arjs-loader">
+            <div>Loading, please wait...</div>
+        </div> -->
 
-    <a-scene 
-        vr-mode-ui='enabled: false' 
-        embedded
-        arjs='sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
-        renderer="logarithmicDepthBuffer: true; antialias: true">
+        <video autoplay style="display: none;"></video>
 
-        <a-light type="ambient" intensity="0.9"></a-light>
-        <a-light type="directional" position="-1 1 -0.4" intensity="0.9"></a-light> 
+        <a-scene 
+            vr-mode-ui='enabled: false' 
+            embedded
+            arjs='sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
+            renderer="logarithmicDepthBuffer: true; antialias: true;">
 
-        <a-camera 
-            position="0 1.5 0"
-            near="0.001"
-            rotation-reader
-            look-controls-enabled='false' 
-            arjs-look-controls='smoothingFactor: 0.1' 
-            gps-projected-camera='gpsMinDistance: 3'>  
-        </a-camera>
+            <a-light type="ambient" intensity="1.2"></a-light>
+            <a-light type="directional" position="-1 1 -0.4" intensity="0.9"></a-light>
 
-    </a-scene>
+            <a-camera 
+                position="0 1.6 0"
+                near="0.001"
+                look-controls-enabled='false' 
+                arjs-look-controls='smoothingFactor: 0.1' 
+                gps-projected-camera='gpsMinDistance: 3'>  
+            </a-camera>
+            
+            <a-entity gltf-model="./assets/kridlovicka4.glb" gps-projected-entity-place="latitude: 49.188374; longitude: 16.597964;">
+                <a-entity gltf-model="./assets/mobiliarOld.glb"></a-entity>
+                <a-entity gltf-model="./assets/mobiliarNew.glb"></a-entity>
+                <a-entity gltf-model="./assets/trees.glb"            id="trees" visible="false"></a-entity>
+                <a-entity gltf-model="./assets/building_floors.glb"  id="building" visible="false"></a-entity>
+            </a-entity>
 
-    <div class="visualisation-button-container">
-        <button class="visualisation-button" id="buttonInfo"></button>
-        <button class="visualisation-button" id="buttonTree"></button>
-        <button class="visualisation-button" id="buttonBuil"></button>
-    </div>
-</body>
+        </a-scene>
+
+        <div class="visualisation-button-container">
+            <button class="visualisation-button" id="buttonInfo"></button>
+            <button class="visualisation-button" id="buttonTree"></button>
+            <button class="visualisation-button" id="buttonBuil"></button>
+        </div>
+
+    </body>
+</html>

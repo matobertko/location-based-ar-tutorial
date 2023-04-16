@@ -25,6 +25,17 @@ window.onload = () => {
     // ------------- get SCENE element --------
     let scene = document.querySelector('a-scene');
 
+    // -------- handle NO / REJECTED CAMERA usage --
+    let video = document.querySelector('video');
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {video.srcObject = stream;})
+        .catch(() => {
+            sky = document.createElement("a-sky");
+            sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
+            sky.setAttribute('rotation', '0 170 0');
+            scene.appendChild(sky);
+        });
+
     // ------------ DECIDE GPS COORDINATES
     if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
         console.log('Zobrazujem na kridlovickej');
@@ -34,8 +45,8 @@ window.onload = () => {
     }  
 
     // -------- create entities ---------------
-    let crossroad = createEntity(scene, latitude, longitude, './assets/kridlovicka3.glb');
-    crossroad.setAttribute("visible", 'true');
+    //let crossroad = createEntity(scene, latitude, longitude, './assets/testing.glb');
+    //crossroad.setAttribute("visible", 'true');
 
     // crossroad.addEventListener('loaded', () => {
     //     // Hide loading popup
@@ -45,14 +56,9 @@ window.onload = () => {
 
     //   });
 
-    // crossroad.addEventListener('loaded', () => {
-    //     console.log('after entity creation');
-    //     alert("Model je načítaný");
-    // });
+    //let trees = createEntity(scene, latitude, longitude, './assets/trees.glb');
 
-    let trees = createEntity(scene, latitude, longitude, './assets/trees.glb');
-
-    let building = createEntity(scene, latitude, longitude, './assets/building_floors.glb');
+    //let building = createEntity(scene, latitude, longitude, './assets/building_floors.glb');
 
     let singsCollection = createSigns(scene, 8, latitude, longitude);
 
@@ -71,37 +77,18 @@ window.onload = () => {
     let buttonTrees = document.querySelector('#buttonTree');
     buttonTrees.addEventListener("click", function() {
         buttonTrees.style.opacity = (buttonTrees.style.opacity == 1) ? 0.5 : 1;
-        switchVisibility(trees);
+        switchVisibility(scene.querySelector('#trees'));
     });
 
     let buttonBuilding = document.querySelector('#buttonBuil');
     buttonBuilding.addEventListener('click', function() {
         buttonBuilding.style.opacity = (buttonBuilding.style.opacity == 1) ? 0.5 : 1;
-        switchVisibility(building);
+        switchVisibility(scene.querySelector('#building'));
     });
-
-    // -------- manage RADIO BUTTONS ----------
-    // document.querySelector('#original').addEventListener("click", function() {
-    //     switchGPSCoords(scene, latitude, longitude);
-    // });
-    
-    // document.querySelector('#current').addEventListener("click", function() {
-    //     let [lat, long] = getNewGPSCoords(latitude, longitude);
-    //     switchGPSCoords(scene, lat, long);
-    // });
     
     // -------- manage loading popup ----------
 
     // TODO
-
-    
-    // -------- handle rejected camera usage --
-
-    //createFakeSky(scene);
-
-    // navigator.mediaDevices.ondevicechange = function() {
-    //     camPermissionHandler(scene);
-    // }; 
 };
 
 // --------------------------------------------------------------------------
@@ -109,41 +96,6 @@ window.onload = () => {
 //                      commenting: /** */
 // --------------------------------------------------------------------------
 
-
-// -------- unavailableCamera -----------------
-function createFakeSky(scene) {
-    let sky = scene.querySelector('a-sky');
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(() => {
-            if (sky) {
-                sky.remove();
-            } 
-        })
-        .catch((error) => {
-            if (error.name === 'NotFoundError') {
-                console.log('Device does not have a camera.');
-            }
-            if (sky == null) {
-                sky = document.createElement("a-sky");
-                sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
-                sky.setAttribute('rotation', '0 170 0');
-                scene.appendChild(sky);
-            }
-        });
-}
-
-
-// ------------- POPUP ------------------------
-// function showOnOriginal() {
-//     var popup = document.getElementById('popup');
-//     popup.style.display = 'none';
-// }
-
-// function showOnUsers() {
-//     var popup = document.getElementById('popup');
-//     popup.style.display = 'none';
-//     useUsersGPSCoords();
-// }
 
 function useUsersGPSCoords(scene) {
     if ("geolocation" in navigator) {
@@ -158,40 +110,6 @@ function useUsersGPSCoords(scene) {
     } else {
         console.log("This browser does not support GPS.");
     }
-
-
-    // return [lat, long];
-    // let GPSCoordsRetrieved = false;
-
-    // const camera = document.querySelector("[gps-projected-camera]");
-    
-    // camera.addEventListener("gps-camera-update-position", e => {
-    //     console.log("nasli sme GPS");
-    //     if(!GPSCoordsRetrieved) {
-    //         lat = e.detail.position.latitude;
-    //         long = e.detail.position.longitude;
-    //         alert(`Got first GPS position: lon ${long} lat ${lat}`);
-    //         // Add a box to the north of the initial GPS position
-    //         const entity = document.createElement("a-box");
-    //         entity.setAttribute("scale", {
-    //             x: 20, 
-    //             y: 20,
-    //             z: 20
-    //         });
-    //         entity.setAttribute('material', { color: 'red' } );
-    //         entity.setAttribute('gps-projected-entity-place', {
-    //             latitude: lat + 0.001,
-    //             longitude: long
-    //         });
-    //         document.querySelector("a-scene").appendChild(entity);
-    //     }
-    //     GPSCoordsRetrieved = true;
-
-    //     alert('coordinates:' + lat + '; ' + long);
-    // });
-
-    // console.log("vraciam: " + lat + " -- " + long);
-    // return [lat, long];
 }
 
 function switchGPSCoords(scene, lat, long) {
@@ -227,23 +145,6 @@ function createSigns(scene, countOfSigns, lat, long) {
 
     return signsCollection;
 }
-
-// ------- ENTITY GPS LOCATION SWITCHER -------
-// function getNewGPSCoords(lat, long) {
-//     if ("geolocation" in navigator) {
-//         navigator.geolocation.getCurrentPosition(function(position) {
-//           lat = position.coords.latitude;
-//           long = position.coords.longitude;
-//         }, function() {
-//             console.log("Cannot get GPS coordinates");
-//         });
-//     } else {
-//         console.log("This browser does not support GPS.");
-//     }
-
-//     return [lat, long];
-// }
-
 
 // -------- ENTITY VISIBILITY SWITCHER --------
 function switchVisibility(asset) {
