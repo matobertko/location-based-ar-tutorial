@@ -128,7 +128,7 @@ function createSigns(crossroad, countOfSigns) {
         let signEntity = document.createElement("a-entity");
         signEntity.setAttribute('gltf-model', `./assets/sign${objIdx}.glb`);
         signEntity.setAttribute('visible', 'false');
-        signEntity.setAttribute('look-at', '[gps-projected-camera]');
+        // signEntity.setAttribute('look-at', '[gps-projected-camera]');
         crossroad.appendChild(signEntity);
         signsCollection.push(signEntity);
     }
