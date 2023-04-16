@@ -26,15 +26,15 @@ window.onload = () => {
     let scene = document.querySelector('a-scene');
 
     // -------- handle NO / REJECTED CAMERA usage --
-    // let video = document.querySelector('video');
-    // navigator.mediaDevices.getUserMedia({ video: true })
-    //     .then((stream) => {video.srcObject = stream;})
-    //     .catch(() => {
-    //         sky = document.createElement("a-sky");
-    //         sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
-    //         sky.setAttribute('rotation', '0 170 0');
-    //         scene.appendChild(sky);
-    //     });
+    let video = document.querySelector('video');
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {video.srcObject = stream;})
+        .catch(() => {
+            sky = document.createElement("a-sky");
+            sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
+            sky.setAttribute('rotation', '0 170 0');
+            scene.appendChild(sky);
+        });
 
     // ------------ DECIDE GPS COORDINATES
     if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
@@ -44,25 +44,10 @@ window.onload = () => {
         useUsersGPSCoords(scene);
     }  
 
-    // -------- create entities ---------------
-    //let crossroad = createEntity(scene, latitude, longitude, './assets/testing.glb');
-    //crossroad.setAttribute("visible", 'true');
-
-    // crossroad.addEventListener('loaded', () => {
-    //     // Hide loading popup
-    //     //loadingPopupEl.setAttribute('a-loading', 'enabled', false);
-    //     console.log("model loaded");
-    //     document.getElementById('loading-popup').style.display = 'none';
-
-    //   });
-
-    //let trees = createEntity(scene, latitude, longitude, './assets/trees.glb');
-
-    //let building = createEntity(scene, latitude, longitude, './assets/building_floors.glb');
-
+    // -------- create signs ---------------
     let singsCollection = createSigns(scene.querySelector('#crossroad'), 8, latitude, longitude);
 
-    console.log('after entity creation');
+    console.log('after signs creation');
 
     // -------- manage VISUALISATION BUTTONS --
     let buttonInfo = document.querySelector('#buttonInfo');
@@ -73,7 +58,6 @@ window.onload = () => {
         });
     });
     
-
     let buttonTrees = document.querySelector('#buttonTree');
     buttonTrees.addEventListener("click", function() {
         buttonTrees.style.opacity = (buttonTrees.style.opacity == 1) ? 0.5 : 1;
