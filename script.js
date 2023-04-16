@@ -26,15 +26,15 @@ window.onload = () => {
     let scene = document.querySelector('a-scene');
 
     // -------- handle NO / REJECTED CAMERA usage --
-    let video = document.querySelector('video');
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {video.srcObject = stream;})
-        .catch(() => {
-            sky = document.createElement("a-sky");
-            sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
-            sky.setAttribute('rotation', '0 170 0');
-            scene.appendChild(sky);
-        });
+    // let video = document.querySelector('video');
+    // navigator.mediaDevices.getUserMedia({ video: true })
+    //     .then((stream) => {video.srcObject = stream;})
+    //     .catch(() => {
+    //         sky = document.createElement("a-sky");
+    //         sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
+    //         sky.setAttribute('rotation', '0 170 0');
+    //         scene.appendChild(sky);
+    //     });
 
     // ------------ DECIDE GPS COORDINATES
     if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
@@ -60,7 +60,7 @@ window.onload = () => {
 
     //let building = createEntity(scene, latitude, longitude, './assets/building_floors.glb');
 
-    let singsCollection = createSigns(scene, 8, latitude, longitude);
+    let singsCollection = createSigns(scene.querySelector('#crossroad'), 8, latitude, longitude);
 
     console.log('after entity creation');
 
@@ -122,24 +122,14 @@ function switchGPSCoords(scene, lat, long) {
 }
 
 // -------- CREATE ENTITIES -------------------
-function createEntity(scene, lat, long, asset) {
-    // create entity and initialize it
-    let entity = document.createElement("a-entity");
-    entity.setAttribute('gltf-model', asset);
-    entity.setAttribute('visible', 'false');
-    entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
-    
-    // insert entity into the scene
-    scene.appendChild(entity);
-
-    return entity;
-}
-
-function createSigns(scene, countOfSigns, lat, long) {
+function createSigns(crossroad, countOfSigns) {
     let signsCollection = [];
     for (let objIdx = 1; objIdx <= countOfSigns; objIdx++) {
-        let signEntity = createEntity(scene, lat, long, `./assets/sign${objIdx}.glb`);
-        //signEntity.setAttribute('look-at', '[gps-projected-camera]');
+        let signEntity = document.createElement("a-entity");
+        signEntity.setAttribute('gltf-model', `./assets/sign${objIdx}.glb`);
+        signEntity.setAttribute('visible', 'false');
+        signEntity.setAttribute('look-at', '[gps-projected-camera]');
+        crossroad.appendChild(signEntity);
         signsCollection.push(signEntity);
     }
 
