@@ -38,26 +38,20 @@
 
             <a-camera 
                 rotation-reader
-                position="0 1.6 0"
+                position="0 1.8 0"
                 near="0.001"
+                fov="70"
                 look-controls-enabled='false' 
                 arjs-look-controls='smoothingFactor: 0.1' 
                 gps-projected-camera='gpsMinDistance: 3'>  
             </a-camera>
-
-            <!-- <a-entity bmfont-text="text: Hello world"></a-entity> -->
             
             <a-entity gltf-model="./assets/kridlovicka4.glb" gps-projected-entity-place="latitude: 49.188374; longitude: 16.597964;" id="crossroad">
                 <a-entity gltf-model="./assets/mobiliarOld.glb"></a-entity>
                 <a-entity gltf-model="./assets/mobiliarNew.glb"></a-entity>
-                <a-entity gltf-model="./assets/trees.glb"            id="trees" visible="false"></a-entity>
+                <a-entity gltf-model="./assets/trees.glb"            id="trees"    visible="false"></a-entity>
                 <a-entity gltf-model="./assets/building_floors.glb"  id="building" visible="false"></a-entity>
-                <!-- <a-entity gltf-model="./assets/sign4.glb" position="0 2 0" look-at="[gps-projected-camera]"></a-entity> -->
-                <!-- <a-text value="Hello, World!" position="0 2 0" width="9"></a-text>
-                <a-text value="Now Interactable" geometry="primitive:plane" position="3 2 6"  width="9"></a-text> -->
             </a-entity>
-
-            <!-- <a-entity bmfont-text="text: HELLO!; color: #333" position="0 2 -5"></a-entity> -->
         </a-scene>
 
         <div class="visualisation-button-container">
