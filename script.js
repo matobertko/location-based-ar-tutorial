@@ -15,6 +15,7 @@
 // k. billa vpravo> 49.210445, 16.593361
 // botanicka skola> 49.2097608, 16.5985181
 // kridlovicka 49.188374, 16.597964
+// kridlovicka roh budovy: 49.1883144, 16.5977897
 
 
 // AFRAME.registerComponent('look-at-y', {
@@ -41,22 +42,22 @@ window.onload = () => {
         {
             headline: "Fontána",
             description: "Litinová kašna původně stávala u domu č. p. 1 na Václavské ulici na Starém Brně. V osmdesátých letech minulého století kašna zmizela z původního místa a deset let se o ní nevědělo. V devadesátých letech byla znovu nalezena a postavena na současné místo na ulici Česká.\nPůvodně kašna sloužila k napájení zvířat, spodní nádržka pro psy, střední pro koně a horní pro ptáky.",
-            position: "-10 2.5 6"
+            position: "31 2.5 7"
         },
         {
             headline: "Nová budova",
             description: "Súčasná budova sa plánuje zbúrať a nahradiť ju má nová 6 podlažná administratívna budova.",
-            position: "-28 2.5 3"
+            position: "-11 2.5 4"
         },
         {
             headline: "Vyvýšená križovatka",
             description: "Vyvýšenie križovatky umožní spomalenie vozidiel do nej vchádzajúcich a zjednoduší pohyb peších",
-            position: "3 2.5 18"
+            position: "19 2.5 19"
         },
         {
             headline: "Koše na triedený odpad",
             description: "Nový mobiliár umožní triedenie odpadu.",
-            position: "13 2.5 25"
+            position: "28 2.5 28"
         }
     ];
 
@@ -64,23 +65,30 @@ window.onload = () => {
     let scene = document.querySelector('a-scene');
 
     // -------- handle NO / REJECTED CAMERA usage --
-    // let video = document.querySelector('video');
-    // navigator.mediaDevices.getUserMedia({ video: true })
-    //     .then((stream) => {video.srcObject = stream;})
-    //     .catch(() => {
-    //         sky = document.createElement("a-sky");
-    //         sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
-    //         sky.setAttribute('rotation', '0 170 0');
-    //         scene.appendChild(sky);
-    //     });
+    let video = document.querySelector('video');
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+            video.srcObject = stream;
+            if (document.querySelector("a-sky")) {
+                document.querySelector("a-sky").remove();
+            }
+        })
+        .catch(() => {
+            if (!document.querySelector("a-sky")) {
+                sky = document.createElement("a-sky");
+                sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
+                sky.setAttribute('rotation', '0 170 0');
+                scene.appendChild(sky);
+            }
+        });
 
     // ------------ DECIDE GPS COORDINATES
-    if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
-        console.log('Zobrazujem na kridlovickej');
-    } else {
-        console.log('Zobrazujem na polohe uzivatela');
-        useUsersGPSCoords(scene);
-    }  
+    // if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
+    //     console.log('Zobrazujem na kridlovickej');
+    // } else {
+    //     console.log('Zobrazujem na polohe uzivatela');
+    //     useUsersGPSCoords(scene);
+    // }  
 
     // -------- create signs ---------------
     //let singsCollection = createSigns(scene.querySelector('#crossroad'), 8, latitude, longitude);
@@ -143,21 +151,7 @@ function switchGPSCoords(scene, lat, long) {
     console.log("Coordinates were switched");
 }
 
-// -------- CREATE ENTITIES -------------------
-// function createSigns(crossroad, countOfSigns) {
-//     let signsCollection = [];
-//     for (let objIdx = 1; objIdx <= countOfSigns; objIdx++) {
-//         let signEntity = document.createElement("a-entity");
-//         signEntity.setAttribute('gltf-model', `./assets/sign${objIdx}.glb`);
-//         signEntity.setAttribute('visible', 'false');
-//         // signEntity.setAttribute('look-at', '[gps-projected-camera]');
-//         crossroad.appendChild(signEntity);
-//         signsCollection.push(signEntity);
-//     }
-
-//     return signsCollection;
-// }
-
+// -------- CREATE SIGNS -------------------
 function createSigns(crossroad, signsContent) {
     signsContent.forEach(signContent => {
         let signHeadline = document.createElement("a-text");
@@ -178,15 +172,16 @@ function createSigns(crossroad, signsContent) {
         let signDescription = document.createElement("a-text");
         signDescription.setAttribute('value', signContent.description);
         signDescription.setAttribute('position', '0 -0.1 0');
-        signDescription.setAttribute('color', '#666666');
-        signDescription.setAttribute('align', 'left');
+        // signDescription.setAttribute('geometry', 'primitive: plane; width: auto; height: auto; color: white; opacity:0.5;');
+        signDescription.setAttribute('color', 'black');
+        signDescription.setAttribute('align', 'center');
         signDescription.setAttribute('anchor', 'center');
         signDescription.setAttribute('baseline', 'top');
         signDescription.setAttribute('shader', 'msdf');
         signDescription.setAttribute('side', 'double');
         signDescription.setAttribute('negate', 'false');
         signDescription.setAttribute('width', '3');
-        signDescription.setAttribute('wrap-Count', '60');
+        signDescription.setAttribute('wrap-Count', '40');
         signDescription.setAttribute('font', './fonts/NunitoSans-Regular-msdf.json');
         signDescription.setAttribute('fontImage', './fonts/NunitoSans-Regular.png');
         signDescription.setAttribute('visible', 'false');

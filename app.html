@@ -23,7 +23,7 @@
 
         <!-- <div class="arjs-loader">
             <div>Loading, please wait...</div>
-        </div> -->
+        </div> https://aframe.io/docs/1.4.0/core/scene.html#running-content-scripts-on-the-scene -->
 
         <video autoplay style="display: none;"></video>
 
@@ -31,7 +31,8 @@
             vr-mode-ui='enabled: false' 
             embedded
             arjs='sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
-            renderer="logarithmicDepthBuffer: true; antialias: true;">
+            renderer="antialias: true"
+            background="transparent: true">
 
             <a-light type="ambient" intensity="1.2"></a-light>
             <a-light type="directional" position="-1 1 -0.4" intensity="0.9"></a-light>
@@ -40,17 +41,20 @@
                 rotation-reader
                 position="0 1.8 0"
                 near="0.001"
-                fov="70"
+                fov="80"
+                wasd-controls="acceleration: 300"
                 look-controls-enabled='false' 
                 arjs-look-controls='smoothingFactor: 0.1' 
-                gps-projected-camera='gpsMinDistance: 3'>  
+                gps-projected-camera='simulateLatitude: 49.188178; simulateLongitude: 16.598169; gpsMinDistance: 3'>  
             </a-camera>
             
-            <a-entity gltf-model="./assets/kridlovicka4.glb" gps-projected-entity-place="latitude: 49.188374; longitude: 16.597964;" id="crossroad">
-                <a-entity gltf-model="./assets/mobiliarOld.glb"></a-entity>
-                <a-entity gltf-model="./assets/mobiliarNew.glb"></a-entity>
-                <a-entity gltf-model="./assets/trees.glb"            id="trees"    visible="false"></a-entity>
-                <a-entity gltf-model="./assets/building_floors.glb"  id="building" visible="false"></a-entity>
+            <a-entity gltf-model="./assets/kridlovicka5.glb" gps-projected-entity-place="latitude: 49.1883144; longitude: 16.5977897;" id="crossroad">
+                <a-entity gltf-model="./assets/mobiliarOld2.glb"></a-entity>
+                <a-entity gltf-model="./assets/mobiliarNew2.glb"></a-entity>
+                <a-entity gltf-model="./assets/pitko2.glb"></a-entity>
+                <a-entity gltf-model="./assets/tree_pavement.glb"></a-entity>
+                <a-entity gltf-model="./assets/trees2.glb"            id="trees"    visible="false"></a-entity>
+                <a-entity gltf-model="./assets/building_floors2.glb"  id="building" visible="false"></a-entity>
             </a-entity>
         </a-scene>
 
