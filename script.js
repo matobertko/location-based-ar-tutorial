@@ -62,14 +62,15 @@ window.onload = () => {
     let scene = document.querySelector('a-scene');
 
     // -------- handle NO / REJECTED CAMERA usage --
-    let video = document.querySelector('video');
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {
-            video.srcObject = stream;
-            document.querySelector("a-sky").setAttribute('visible', 'false')
-        })
-        .catch(() => {
-            document.querySelector("a-sky").setAttribute('visible', 'true')
+        .then(() => {})
+        .catch((error) => {
+            if (error == 'NotFoundError') {
+                sky = document.createElement("a-sky");
+                sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
+                sky.setAttribute('rotation', '0 170 0');
+                scene.appendChild(sky);
+            }
         });
 
     // ------------ DECIDE GPS COORDINATES
@@ -126,21 +127,17 @@ function pageLoaded () {
 
 // ------------ use users location ----------------------
 function useUsersGPSCoords(scene) {
-    let gotPositionAlready = false;
     if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            if (!gotPositionAlready) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
                 lat = position.coords.latitude;
                 long = position.coords.longitude;
                 alert("dostal som GPS suradnice: " + lat + '; ' + long);
                 switchGPSCoords(scene, lat, long);
-                gotPositionAlready = true;
-            } else {
-                alert("dostal som NOVE GPS suradnice: " + lat + '; ' + long);
-            }
-        }, function() {
-            console.log("Cannot get GPS coordinates");
-        });
+            }, 
+            function() {
+                console.log("Cannot get GPS coordinates");
+            });
     } else {
         console.log("This browser does not support GPS.");
     }
@@ -189,12 +186,12 @@ function createSigns(crossroad, signsContent) {
         signDescription.setAttribute('fontImage', './fonts/NunitoSans-Regular.png');
         signHeadline.appendChild(signDescription);
 
-        const signBg = document.createElement("a-plane");
-        signBg.setAttribute('position', '0 -0.7 -0.01');
-        signBg.setAttribute('color', '#666');
-        signBg.setAttribute('width', '3.2');
-        signBg.setAttribute('height', '2');
-        signHeadline.appendChild(signBg);
+        // const signBg = document.createElement("a-plane");
+        // signBg.setAttribute('position', '0 -0.7 -0.01');
+        // signBg.setAttribute('color', '#666');
+        // signBg.setAttribute('width', '3.2');
+        // signBg.setAttribute('height', '2');
+        // signHeadline.appendChild(signBg);
     });
 }
 

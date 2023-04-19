@@ -20,23 +20,11 @@
     </head>
 
     <body>    
-
-        <!-- <div id=loader class="arjs-loader">
-            <div>Loading, please wait...</div>
-        </div>  -->
-
         <div id="loader-overlay">
             <div id="loader-content">
                 Načítavam stránku, počkajte prosím
             </div>
-        </div>
-          
-        
-        <!-- https://aframe.io/docs/1.4.0/core/scene.html#running-content-scripts-on-the-scene -->
-
-        
-
-        <video autoplay style="display: none;"></video>
+        </div>      
 
         <a-scene 
             vr-mode-ui='enabled: false' 
@@ -47,8 +35,6 @@
 
             <a-light type="ambient" intensity="1.2"></a-light>
             <a-light type="directional" position="-1 1 -0.4" intensity="0.9"></a-light>
-            
-            <a-sky src='kridlovicka_HDRI.jpg' rotation='0 170 0' visible="false"></a-sky>
 
             <a-camera 
                 rotation-reader
