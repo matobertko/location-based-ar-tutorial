@@ -21,9 +21,20 @@
 
     <body>    
 
-        <!-- <div class="arjs-loader">
+        <!-- <div id=loader class="arjs-loader">
             <div>Loading, please wait...</div>
-        </div> https://aframe.io/docs/1.4.0/core/scene.html#running-content-scripts-on-the-scene -->
+        </div>  -->
+
+        <div id="loader-overlay">
+            <div id="loader-content">
+                Načítavam stránku, počkajte prosím
+            </div>
+        </div>
+          
+        
+        <!-- https://aframe.io/docs/1.4.0/core/scene.html#running-content-scripts-on-the-scene -->
+
+        
 
         <video autoplay style="display: none;"></video>
 
@@ -36,6 +47,8 @@
 
             <a-light type="ambient" intensity="1.2"></a-light>
             <a-light type="directional" position="-1 1 -0.4" intensity="0.9"></a-light>
+            
+            <a-sky src='kridlovicka_HDRI.jpg' rotation='0 170 0' visible="false"></a-sky>
 
             <a-camera 
                 rotation-reader
@@ -45,10 +58,10 @@
                 wasd-controls="acceleration: 300"
                 look-controls-enabled='false' 
                 arjs-look-controls='smoothingFactor: 0.1' 
-                gps-projected-camera='simulateLatitude: 49.188178; simulateLongitude: 16.598169; gpsMinDistance: 3'>  
+                gps-projected-camera='gpsMinDistance: 3'>  
             </a-camera>
             
-            <a-entity gltf-model="./assets/kridlovicka5.glb" gps-projected-entity-place="latitude: 49.1883144; longitude: 16.5977897;" id="crossroad">
+            <a-entity gltf-model="./assets/kridlovicka5.glb" gps-projected-entity-place="latitude: 49.1883144; longitude: 16.5977897;" id="crossroad" position="0 -0.1 0">
                 <a-entity gltf-model="./assets/mobiliarOld2.glb"></a-entity>
                 <a-entity gltf-model="./assets/mobiliarNew2.glb"></a-entity>
                 <a-entity gltf-model="./assets/pitko2.glb"></a-entity>

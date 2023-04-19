@@ -2,12 +2,6 @@
 //  DELETE LOGS
 //  DELETE COORDS
 //  *************
-// show the loading popup
-// document.addEventListener('DOMContentLoaded', function() {
-//     document.getElementById('loading-popup').style.display = 'block';
-// });
-
-
 // -------- coords ------------------------
 // kounicova vzadu> 49.210930, 16.594155
 // kounicova predu> 49.210444, 16.593347
@@ -35,32 +29,35 @@
 //     }
 // });
 
-// when all HTML doc. is loaded
-window.onload = () => {
-    // ------------ CONTENT OF SIGNS ---------------
-    let signsContent = [
-        {
-            headline: "Fontána",
-            description: "Litinová kašna původně stávala u domu č. p. 1 na Václavské ulici na Starém Brně. V osmdesátých letech minulého století kašna zmizela z původního místa a deset let se o ní nevědělo. V devadesátých letech byla znovu nalezena a postavena na současné místo na ulici Česká.\nPůvodně kašna sloužila k napájení zvířat, spodní nádržka pro psy, střední pro koně a horní pro ptáky.",
-            position: "31 2.5 7"
-        },
-        {
-            headline: "Nová budova",
-            description: "Súčasná budova sa plánuje zbúrať a nahradiť ju má nová 6 podlažná administratívna budova.",
-            position: "-11 2.5 4"
-        },
-        {
-            headline: "Vyvýšená križovatka",
-            description: "Vyvýšenie križovatky umožní spomalenie vozidiel do nej vchádzajúcich a zjednoduší pohyb peších",
-            position: "19 2.5 19"
-        },
-        {
-            headline: "Koše na triedený odpad",
-            description: "Nový mobiliár umožní triedenie odpadu.",
-            position: "28 2.5 28"
-        }
-    ];
 
+// ------------ CONTENT OF SIGNS ---------------
+let signsContent = [
+    {
+        headline: "Fontána",
+        description: "Litinová kašna původně stávala u domu č. p. 1 na Václavské ulici na Starém Brně. V osmdesátých letech minulého století kašna zmizela z původního místa a deset let se o ní nevědělo. V devadesátých letech byla znovu nalezena a postavena na současné místo na ulici Česká.\nPůvodně kašna sloužila k napájení zvířat, spodní nádržka pro psy, střední pro koně a horní pro ptáky.",
+        position: "31 2.5 7"
+    },
+    {
+        headline: "Nová budova",
+        description: "Súčasná budova sa plánuje zbúrať a nahradiť ju má nová 6 podlažná administratívna budova.",
+        position: "-11 2.5 4"
+    },
+    {
+        headline: "Vyvýšená križovatka",
+        description: "Vyvýšenie križovatky umožní spomalenie vozidiel do nej vchádzajúcich a zjednoduší pohyb peších",
+        position: "19 2.5 19"
+    },
+    {
+        headline: "Koše na triedený odpad",
+        description: "Nový mobiliár umožní triedenie odpadu.",
+        position: "28 2.5 28"
+    }
+];
+
+// -------------------------------------------------------------------
+//                      AFTER LOADING THE PAGE 
+// -------------------------------------------------------------------
+window.onload = () => {
     // ------------- get SCENE element --------
     let scene = document.querySelector('a-scene');
 
@@ -69,29 +66,21 @@ window.onload = () => {
     navigator.mediaDevices.getUserMedia({ video: true })
         .then((stream) => {
             video.srcObject = stream;
-            if (document.querySelector("a-sky")) {
-                document.querySelector("a-sky").remove();
-            }
+            document.querySelector("a-sky").setAttribute('visible', 'false')
         })
         .catch(() => {
-            if (!document.querySelector("a-sky")) {
-                sky = document.createElement("a-sky");
-                sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
-                sky.setAttribute('rotation', '0 170 0');
-                scene.appendChild(sky);
-            }
+            document.querySelector("a-sky").setAttribute('visible', 'true')
         });
 
     // ------------ DECIDE GPS COORDINATES
-    // if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
-    //     console.log('Zobrazujem na kridlovickej');
-    // } else {
-    //     console.log('Zobrazujem na polohe uzivatela');
-    //     useUsersGPSCoords(scene);
-    // }  
+    if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
+        console.log('Zobrazujem na kridlovickej');
+    } else {
+        console.log('Zobrazujem na polohe uzivatela');
+        useUsersGPSCoords(scene);
+    }  
 
     // -------- create signs ---------------
-    //let singsCollection = createSigns(scene.querySelector('#crossroad'), 8, latitude, longitude);
     createSigns(scene.querySelector('#crossroad'), signsContent);
     console.log('after signs creation');
 
@@ -117,23 +106,38 @@ window.onload = () => {
     });
     
     // -------- manage loading popup ----------
-
-    // TODO
+    if (scene.hasLoaded) {
+        pageLoaded();
+    } else {
+        scene.addEventListener('loaded', pageLoaded);
+    }
 };
 
 // --------------------------------------------------------------------------
-//                          FUNCTIONS
+//                          HELPER FUNCTIONS
 //                      commenting: /** */
 // --------------------------------------------------------------------------
 
+// ------------- close 'please wait' div ----------------
+function pageLoaded () {
+    console.log('site is loaded');
+    document.getElementById('loader-overlay').style.display = 'none';
+}
 
+// ------------ use users location ----------------------
 function useUsersGPSCoords(scene) {
+    let gotPositionAlready = false;
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(position) {
-          lat = position.coords.latitude;
-          long = position.coords.longitude;
-          alert("dostal som GPS suradnice: " + lat + '; ' + long);
-          switchGPSCoords(scene, lat, long);
+            if (!gotPositionAlready) {
+                lat = position.coords.latitude;
+                long = position.coords.longitude;
+                alert("dostal som GPS suradnice: " + lat + '; ' + long);
+                switchGPSCoords(scene, lat, long);
+                gotPositionAlready = true;
+            } else {
+                alert("dostal som NOVE GPS suradnice: " + lat + '; ' + long);
+            }
         }, function() {
             console.log("Cannot get GPS coordinates");
         });
@@ -154,7 +158,7 @@ function switchGPSCoords(scene, lat, long) {
 // -------- CREATE SIGNS -------------------
 function createSigns(crossroad, signsContent) {
     signsContent.forEach(signContent => {
-        let signHeadline = document.createElement("a-text");
+        const signHeadline = document.createElement("a-text");
         signHeadline.setAttribute('value', signContent.headline);
         signHeadline.setAttribute('position', signContent.position);
         signHeadline.setAttribute('color', '#DA2128');
@@ -169,10 +173,9 @@ function createSigns(crossroad, signsContent) {
         signHeadline.setAttribute('look-at', '[gps-projected-camera]');
         crossroad.appendChild(signHeadline);        
 
-        let signDescription = document.createElement("a-text");
+        const signDescription = document.createElement("a-text");
         signDescription.setAttribute('value', signContent.description);
         signDescription.setAttribute('position', '0 -0.1 0');
-        // signDescription.setAttribute('geometry', 'primitive: plane; width: auto; height: auto; color: white; opacity:0.5;');
         signDescription.setAttribute('color', 'black');
         signDescription.setAttribute('align', 'center');
         signDescription.setAttribute('anchor', 'center');
@@ -184,8 +187,14 @@ function createSigns(crossroad, signsContent) {
         signDescription.setAttribute('wrap-Count', '40');
         signDescription.setAttribute('font', './fonts/NunitoSans-Regular-msdf.json');
         signDescription.setAttribute('fontImage', './fonts/NunitoSans-Regular.png');
-        signDescription.setAttribute('visible', 'false');
         signHeadline.appendChild(signDescription);
+
+        const signBg = document.createElement("a-plane");
+        signBg.setAttribute('position', '0 -0.7 -0.01');
+        signBg.setAttribute('color', '#666');
+        signBg.setAttribute('width', '3.2');
+        signBg.setAttribute('height', '2');
+        signHeadline.appendChild(signBg);
     });
 }
 
