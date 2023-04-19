@@ -58,14 +58,14 @@ let signsContent = [
 //                      AFTER LOADING THE PAGE 
 // -------------------------------------------------------------------
 window.onload = () => {
-    // ------------- get SCENE element --------
+    // ------------- get SCENE element -------------
     let scene = document.querySelector('a-scene');
 
     // -------- handle NO / REJECTED CAMERA usage --
     navigator.mediaDevices.getUserMedia({ video: true })
         .then(() => {})
         .catch((error) => {
-            if (error == 'NotFoundError') {
+            if (error.name === 'NotFoundError') {
                 sky = document.createElement("a-sky");
                 sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
                 sky.setAttribute('rotation', '0 170 0');
@@ -184,14 +184,15 @@ function createSigns(crossroad, signsContent) {
         signDescription.setAttribute('wrap-Count', '40');
         signDescription.setAttribute('font', './fonts/NunitoSans-Regular-msdf.json');
         signDescription.setAttribute('fontImage', './fonts/NunitoSans-Regular.png');
+        signDescription.setAttribute('visible', 'false');
         signHeadline.appendChild(signDescription);
 
-        // const signBg = document.createElement("a-plane");
-        // signBg.setAttribute('position', '0 -0.7 -0.01');
-        // signBg.setAttribute('color', '#666');
-        // signBg.setAttribute('width', '3.2');
-        // signBg.setAttribute('height', '2');
-        // signHeadline.appendChild(signBg);
+        const signBg = document.createElement("a-plane");
+        signBg.setAttribute('position', '0 -0.7 -0.01');
+        signBg.setAttribute('color', '#666');
+        signBg.setAttribute('width', '3.2');
+        signBg.setAttribute('height', '2');
+        signHeadline.appendChild(signBg);
     });
 }
 
