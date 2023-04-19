@@ -1,34 +1,7 @@
-//  *************
-//  DELETE LOGS
-//  DELETE COORDS
-//  *************
 // -------- coords ------------------------
-// kounicova vzadu> 49.210930, 16.594155
-// kounicova predu> 49.210444, 16.593347
-// k. billa  vlavo> 49.210201, 16.593625
-// k. billa vpravo> 49.210445, 16.593361
-// botanicka skola> 49.2097608, 16.5985181
 // kridlovicka 49.188374, 16.597964
 // kridlovicka roh budovy: 49.1883144, 16.5977897
-
-
-// AFRAME.registerComponent('look-at-y', {
-//     schema: {
-//       target: {type: 'string', default: 'camera'}
-//     },
-//     init: function () { },
-//     update: function () { },
-//     tick: function () {
-//       const targetEl = document.getElementById(this.data.target).object3D;
-//       const el = this.el.object3D;
-//       const vec = new THREE.Vector3();
-//       targetEl.getWorldDirection(vec);
-//       vec.y = 0;
-//       vec.add(el.position)
-//       el.lookAt(vec);
-//     }
-// });
-
+// kridlovicka - presnejsia hodnota rohu: 49.188312, 16.597891
 
 // ------------ CONTENT OF SIGNS ---------------
 let signsContent = [
@@ -60,18 +33,6 @@ let signsContent = [
 window.onload = () => {
     // ------------- get SCENE element -------------
     let scene = document.querySelector('a-scene');
-
-    // -------- handle NO / REJECTED CAMERA usage --
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(() => {})
-        .catch((error) => {
-            if (error.name === 'NotFoundError') {
-                sky = document.createElement("a-sky");
-                sky.setAttribute('src', 'kridlovicka_HDRI.jpg');
-                sky.setAttribute('rotation', '0 170 0');
-                scene.appendChild(sky);
-            }
-        });
 
     // ------------ DECIDE GPS COORDINATES
     if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
@@ -187,12 +148,12 @@ function createSigns(crossroad, signsContent) {
         signDescription.setAttribute('visible', 'false');
         signHeadline.appendChild(signDescription);
 
-        const signBg = document.createElement("a-plane");
-        signBg.setAttribute('position', '0 -0.7 -0.01');
-        signBg.setAttribute('color', '#666');
-        signBg.setAttribute('width', '3.2');
-        signBg.setAttribute('height', '2');
-        signHeadline.appendChild(signBg);
+        // const signBg = document.createElement("a-plane");
+        // signBg.setAttribute('position', '0 -0.7 -0.01');
+        // signBg.setAttribute('color', '#666');
+        // signBg.setAttribute('width', '3.2');
+        // signBg.setAttribute('height', '2');
+        // signHeadline.appendChild(signBg);
     });
 }
 
