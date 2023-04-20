@@ -111,6 +111,7 @@
   
   .item-description.open {
     display:inline-block;
+    word-break: break-all;
   }
 
   /* ----------- UNORDERED LIST ----------- */
