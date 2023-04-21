@@ -8,16 +8,16 @@ let signsContent = [
     {
         headline: "Fontána",
         description: "Litinová kašna původně stávala u domu č. p. 1 na Václavské ulici na Starém Brně. V osmdesátých letech minulého století kašna zmizela z původního místa a deset let se o ní nevědělo. V devadesátých letech byla znovu nalezena a postavena na současné místo na ulici Česká.\nPůvodně kašna sloužila k napájení zvířat, spodní nádržka pro psy, střední pro koně a horní pro ptáky.",
-        position: "31 2.5 7"
+        position: "14 2.5 -7"
     },
     {
         headline: "Nová budova",
-        description: "Súčasná budova sa plánuje zbúrať a nahradiť ju má nová 6 podlažná administratívna budova.",
+        description: "Súčasná budova sa plánuje zbúrať a nahradiť ju má nová 5 podlažná administratívna budova.",
         position: "-11 2.5 4"
     },
     {
         headline: "Vyvýšená križovatka",
-        description: "Vyvýšenie križovatky umožní spomalenie vozidiel do nej vchádzajúcich a zjednoduší pohyb peších",
+        description: "Vyvýšenie križovatky umožní spomalenie vozidiel do nej vchádzajúcich a zjednoduší pohyb peších.",
         position: "19 2.5 19"
     },
     {
@@ -27,6 +27,13 @@ let signsContent = [
     }
 ];
 
+for (let level_number = 1; level_number <= 5; level_number++) {
+    signsContent.push({
+        headline: level_number + '. NP',
+        position: `-13 ${-2 + 4 * level_number} 10`
+    });
+}
+
 // -------------------------------------------------------------------
 //                      AFTER LOADING THE PAGE 
 // -------------------------------------------------------------------
@@ -34,7 +41,7 @@ window.onload = () => {
     // ------------- get SCENE element -------------
     let scene = document.querySelector('a-scene');
 
-    // ------------ DECIDE GPS COORDINATES
+    // ------------ DECIDE GPS COORDINATES ---------
     if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
         console.log('Zobrazujem na kridlovickej');
     } else {
@@ -42,11 +49,11 @@ window.onload = () => {
         useUsersGPSCoords(scene);
     }  
 
-    // -------- create signs ---------------
+    // -------- create signs -----------------------
     createSigns(scene.querySelector('#crossroad'), signsContent);
     console.log('after signs creation');
 
-    // -------- manage VISUALISATION BUTTONS --
+    // -------- manage VISUALISATION BUTTONS -------
     let buttonInfo = document.querySelector('#buttonInfo');
     buttonInfo.addEventListener('click', function() {
         buttonInfo.style.opacity = (buttonInfo.style.opacity == 1) ? 0.5 : 1;
@@ -67,7 +74,7 @@ window.onload = () => {
         switchVisibility(scene.querySelector('#building'));
     });
     
-    // -------- manage loading popup ----------
+    // -------- manage loading popup -----------------
     if (scene.hasLoaded) {
         pageLoaded();
     } else {
@@ -116,6 +123,7 @@ function switchGPSCoords(scene, lat, long) {
 // -------- CREATE SIGNS -------------------
 function createSigns(crossroad, signsContent) {
     signsContent.forEach(signContent => {
+        // HEADLINE
         const signHeadline = document.createElement("a-text");
         signHeadline.setAttribute('value', signContent.headline);
         signHeadline.setAttribute('position', signContent.position);
@@ -125,28 +133,32 @@ function createSigns(crossroad, signsContent) {
         signHeadline.setAttribute('shader', 'msdf');
         signHeadline.setAttribute('side', 'double');
         signHeadline.setAttribute('negate', 'false');
-        signHeadline.setAttribute('font', './fonts/NunitoSans-SemiBold-msdf.json');
-        signHeadline.setAttribute('fontImage', './fonts/NunitoSans-SemiBold.png');
+        signHeadline.setAttribute('width', '10');
+        signHeadline.setAttribute('font', './fonts/NunitoSans-ExtraBold-msdf.json');
+        signHeadline.setAttribute('fontImage', './fonts/NunitoSans-ExtraBold.png');
         signHeadline.setAttribute('visible', 'false');
         signHeadline.setAttribute('look-at', '[gps-projected-camera]');
         crossroad.appendChild(signHeadline);        
 
-        const signDescription = document.createElement("a-text");
-        signDescription.setAttribute('value', signContent.description);
-        signDescription.setAttribute('position', '0 -0.1 0');
-        signDescription.setAttribute('color', 'black');
-        signDescription.setAttribute('align', 'center');
-        signDescription.setAttribute('anchor', 'center');
-        signDescription.setAttribute('baseline', 'top');
-        signDescription.setAttribute('shader', 'msdf');
-        signDescription.setAttribute('side', 'double');
-        signDescription.setAttribute('negate', 'false');
-        signDescription.setAttribute('width', '3');
-        signDescription.setAttribute('wrap-Count', '40');
-        signDescription.setAttribute('font', './fonts/NunitoSans-Regular-msdf.json');
-        signDescription.setAttribute('fontImage', './fonts/NunitoSans-Regular.png');
-        signDescription.setAttribute('visible', 'false');
-        signHeadline.appendChild(signDescription);
+        // DESCRIPTION (if provided)
+        if (signContent.description) {
+            const signDescription = document.createElement("a-text");
+            signDescription.setAttribute('value', signContent.description);
+            signDescription.setAttribute('position', '0 -0.2 0');
+            signDescription.setAttribute('color', 'black');
+            signDescription.setAttribute('align', 'center');
+            signDescription.setAttribute('anchor', 'center');
+            signDescription.setAttribute('baseline', 'top');
+            signDescription.setAttribute('shader', 'msdf');
+            signDescription.setAttribute('side', 'double');
+            signDescription.setAttribute('negate', 'false');
+            signDescription.setAttribute('width', '4');
+            signDescription.setAttribute('wrap-Count', '40');
+            signDescription.setAttribute('font', './fonts/NunitoSans-Regular-msdf.json');
+            signDescription.setAttribute('fontImage', './fonts/NunitoSans-Regular.png');
+            signDescription.setAttribute('visible', 'false');
+            signHeadline.appendChild(signDescription);
+        }
 
         // const signBg = document.createElement("a-plane");
         // signBg.setAttribute('position', '0 -0.7 -0.01');
