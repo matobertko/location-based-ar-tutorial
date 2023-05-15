@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brno v AR</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <!-- FONTS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Font+Name&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Font+Name&display=swap" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;800&family=Open+Sans&display=swap" rel="stylesheet">
 
     <!-- ICONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
 </head>
 <body>
     <!-- HEADER -->
@@ -21,60 +25,49 @@
     <div class="triangle"></div>
 
     <!-- SPUSTENIE MODELU -->
-    <h2>Spustenie AR modelu</h2>
+    <h2>Spustenie modelu v AR</h2>
     
-    <p class="hint">Pre bližšie detaily rozkliknite položku v zozname</p>
+    <p class="hint">Pre bližšie detaily kliknite na položku v zozname</p>
 
     <ol>
         <li>
-            <div class="item-title">Zapnite GPS</div>
-            <div class="item-description">Pre kvalitnejší výsledok vykalibrujte GPS, napr. v aplikácii Google Maps.</div>
+            <div class="item-title">Povoľte v mobile prístup k polohe</div>
+            <div class="item-description">Pre kvalitnejší výsledok môžete GPS signál kalibrovať, napr. v aplikácii Google Maps.</div>
         </li>
         <li>
-            <div class="item-title">Otvorte jeden z prehliadačov: Chrome, Mozilla Firefox</div>
-            <div class="item-description">Iné typy prehliadačov nemajú garantovanú použiteľnosť.</div>
+            <div class="item-title">Otvorte jeden z prehliadačov: Chrome alebo Firefox</div>
+            <div class="item-description">Iné typy prehliadačov nemajú garantovanú kompatibilitu s aplikáciou.</div>
         </li>
         <li>
             <div class="item-title">
-                Kliknite na toto tlačidlo <button onclick="copyToClipboard()"><i class="fa fa-copy"></i></button> a spustite skopírovaný odkaz v prehliadači
+                Kliknite na toto tlačidlo <button onclick="copyToClipboard()"><i class="fa fa-copy"></i></button> a spustite skopírovaný odkaz v otvorenom prehliadači
             </div>
-            <div class="item-description">Alebo skopírujte a otvorte tento odkaz:  <a href="https://matobertko.github.io/location-based-ar-tutorial/app.html">https://matobertko.github.io/location-based-ar-tutorial/app.html</a></div>
+            <div class="item-description">Prípadne môžete skopírovať a otvoriť tento odkaz: <a href="https://matobertko.github.io/location-based-ar-tutorial/app.html">https://matobertko.github.io/location-based-ar-tutorial/app.html</a></div>
         </li>
         <li>
             <div class="item-title">Povoľte prehliadaču prístup k polohe a kamere</div>
             <div class="item-description">
-                Povolenia sú nutné na najlepšie zobrazenie modelu. 
-                Povolenie GPS lokácie slúži na presné umistnenie modela do križovatky 
-                a povolenie kamery na zobrazenie modela v mobilnom zariadení.
+                Povolenia sú nutné pre lepší zážitok z rozšírenej reality. 
+                Povolenie polohy slúži na presné umiestnenie modelu do križovatky 
+                a povolenie kamery na zobrazenie modelu v mobilnom zariadení.
                 Táto stránka nikdy neukladá a nikdy nebude ukladať informácie polohe či prípadne ukladať záznam z kamery zariadenia.
             </div>
         </li>
         <li>
+          <div class="item-title">Potvrďte vyskakovacie okno pre zobrazenie na mieste križovatky</div>
+          <div class="item-description">Po nepotvrdení vyskakovacieho okna sa model zobrazí na Vašej aktuálnej polohe</div>
+        </li>
+        <li>
             <div class="item-title">Prechádzajte sa po námestí</div>
-            <div class="item-description">V prípade nejasností alebo problémoch so samotnou stránkou môžete nájsť pomoc v spodnej časti častých otázok a odpovedí,
-                prípadne nás kontaktovať mailom. Kontaktné údaje sú v spodnej časti stránky.</div>
+            <div class="item-description">V prípade problémov môžete nájsť riešenie v spodnej časti častých otázok a odpovedí,
+                prípadne môžete problémy / nápady / tipy adresovať na mail uvedeným v spodnej časti stránky.</div>
         </li>
     </ol>   
 
     <!-- OVLADANIE MODELU -->
     <h2>Ovládanie modelu</h2> 
-    <p>Model dokážete ovládať pomocou týchto tlačidiel:</p>  
-    <div class="buttons-showcase">
-      <div class="button-container">
-        <img src="infoButton.png" alt="tlačidlo pre informácie">
-        <p class="button-text">významné prvky modelu</p>
-      </div>
-      <div class="button-container">
-        <img src="treeButton.png" alt="tlačidlo pre stromy">
-        <p class="button-text">zobrazenie stromov</p>
-      </div>
-      <div class="button-container">
-        <img src="buildingButton.png" alt="tlačidlo pre budovu">
-        <p class="button-text">zobrazenie návrhu budúcej budovy</p>
-      </div>
-    </div>
-    
-    <p>Môžete si taktiež vybrať, kde si zobrazíte v hornom ľavom rohu:</p>
+    <!-- <p>Môžete si taktiež vybrať, kde si zobrazíte v hornom ľavom rohu:</p> -->
+    <!-- <p></p>
     <ol>
       <li>
         <div class="item-title">Křídlovická</div>
@@ -91,41 +84,66 @@
         </div>
       </li>
     </ol> 
-      <!-- <li><b>Křídlovická</b> - GPS pozícia bude zodpovedať umiesteniu priamo na križovatke Křídlovická x Zahradnická.</li>
-      <li><b>Vaša poloha</b> - Model sa zobrazí na vašej aktuálnej pozícii. 
-        Po zapnutí tohto režimu sa nastaví pozícia modelu podľa GPS údajov v momente spustenia režimu. 
-        Znovanačítanie tohto režimu znova načíta nové súradnice, preto odporúčame tento mód počas tohto zobrazenia nemeniť.
-        Odporúčame zobrazovať model v prípade dostatku miesta kvôli prechádzaniu sa skrz model križovatky. 
-        GPS zhoršuje svoju kvalitu vo vnútorných (indoor) pristoroch, preto odporúčame používať aplikáciu iba na vonkajších priestranstvách.
-      </li> -->
-      
+     -->
+    <p>V aplikácii sa nachádzajú 3 tlačidlá. Zapnutie tlačidla zobrazí prvok modelu znázornený na tlačidle. Aplikácia umožňuje skryť / zobraziť tieto objekty:</p>
+    <!-- <p>Model dokážete ovládať pomocou týchto tlačidiel:</p>   -->
+    <div class="buttons-showcase">
+      <div class="button-container">
+        <img src="infoButton.png" alt="tlačidlo pre informácie">
+        <p class="button-text">popis významných prvkov modelu</p>
+      </div>
+      <div class="button-container">
+        <img src="treeButton.png" alt="tlačidlo pre stromy">
+        <p class="button-text">stromy</p>
+      </div>
+      <div class="button-container">
+        <img src="buildingButton.png" alt="tlačidlo pre budovu">
+        <p class="button-text">návrh budúcej budovy</p>
+      </div>
+    </div>     
 
     <!-- FAQ -->
     <h2>Časté otázky a odpovede</h2>
     <ol class="item-list">
-        <li>
-          <div class="item-title">model sa nezobrazuje vôbec</div>
+        <!-- <li>
+          <div class="item-title">Model sa nezobrazuje vôbec</div>
           <div class="item-description">riešenie 1</div>
+        </li> -->
+        <li>
+          <!-- Na pozadí modelu nie je vidno záznam z kamery -->
+          <div class="item-title">Pozadie za modelom je biele</div>
+          <div class="item-description">Najčastejšie ide o problém nepovolenej kamery v prehliadači. Ak ste v prehliadači kameru povolili, je možné že používate prehliadač, ktorý nie je podporovaný touto aplikáciou. Ak je to možné, skúste použiť buď prehliadač Chrome alebo Firefox.</div>
         </li>
         <li>
-          <div class="item-title">model sa nezobrazuje správne</div>
-          <div class="item-description">riešenie 2</div>
+          <div class="item-title">Model neustále mení pozíciu</div>
+          <div class="item-description">Skontroluje kvalitu GPS signálu, prípadne skúste kalibrovať mobilný kompas, napríklad pomocou aplikácie Google Maps.</div>
         </li>
         <li>
-          <div class="item-title">model neustále mení pozíciu</div>
-          <div class="item-description">Skontroluje kvalitu GPS signálu, prípadne ju skúste vykalibrovať, napríklad pomocou aplikácie Google Maps.</div>
+          <div class="item-title">Chcem zmeniť umiestenie zobrazenia</div>
+          <div class="item-description">Jednoducho znova načítajte stránku a vyberte si novú lokáciu (ne)potvrdením vyskakovacieho okna s textom <q><i>Chcete zobraziť model na križovatke Křídlovická?</i></q>.</div>
         </li>
     </ol>   
-
+    
+    <!-- DOTAZNÍK -->
+    <h2>Dotazník</h2>
+    <p>
+      Svoju spätnú väzbu k projektu rekonštrukcie môžete poskytnúť v dotazníku dostupnom na tomto odkaze:
+      <a href="https://forms.gle/kSZk95kTWBJbcwbV9">https://forms.gle/kSZk95kTWBJbcwbV9</a>
+    </p>
+    
     <!-- ABOUT -->
     <h2>O projekte</h2>
-    <p>Tento model vznikol vrámci bakalárskej práce Fakulty informatiky Masarykovej univerzity v roku 2023.</p>
+    <p>
+      Primárnym cieľom projektu je využitie moderných technológií k prispievaniu atraktivity mestského plánovania. 
+      Sekundárnym cieľom je integrácia obyvateľov do procesu vytvárania komunitného verejného priestoru.    
+      Tento projekt vznikol v rámci bakalárskej práce Fakulty informatiky Masarykovej univerzity v spolupráci so študentmi Fakulty architektúry VUT v Brne v roku 2023.   
+    </p>
 
     <!-- CONTACTS -->
     <h2>Kontakt</h2> 
-    <p class="about">514588@mail.muni.cz</p>  
+    <p class="about">email: 514588@mail.muni.cz</p>  
 
-    <!-- ----------------- SCRIPT ----------------- -->
+    <!------------------- SCRIPT ------------------->
     <script src="interaction.js"></script>
 </body>
 </html>
