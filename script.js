@@ -40,15 +40,14 @@ window.onload = () => {
 
     // ------ change GPS coords if needed ------------------------------------
     if (confirm('Chcete vidět model přímo na křižovatce Křídlovická?')) {
-        console.log('Zobrazujem na kridlovickej');
+        console.log('Kridlovicka location');
     } else {
-        console.log('Zobrazujem na polohe uzivatela');
+        console.log('Location of the user');
         useUsersGPSCoords(scene);
     }  
 
     // ------ create SIGNS iteratively and add them to crossroad entity ------
     createSigns(scene.querySelector('#crossroad'), signsContent);
-    console.log('after signs creation');
 
     // ------ manage VISUALISATION BUTTONS -----------------------------------
     let buttonInfo = document.querySelector('#buttonInfo');
@@ -86,7 +85,6 @@ window.onload = () => {
  * closes LOADER POPUP div 
  */
 function pageLoaded () {
-    console.log('site is loaded');
     document.getElementById('loader-overlay').style.display = 'none';
 }
 
