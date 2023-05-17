@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="cz">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,47 +25,47 @@
     <div class="triangle"></div>
 
     <!-- SPUSTENIE MODELU -->
-    <h2>Spustenie modelu v AR</h2>
+    <h2>Spuštění modelu v AR</h2>
     
-    <p class="hint">Pre bližšie detaily kliknite na položku v zozname</p>
+    <p class="hint">Pro více informací klikněte na položku v seznamu.</p>
 
     <ol>
         <li>
-            <div class="item-title">Povoľte v mobile prístup k polohe</div>
-            <div class="item-description">Pre kvalitnejší výsledok môžete GPS signál kalibrovať, napr. v aplikácii Google Maps.</div>
+            <div class="item-title">Povolení přístupu k poloze v mobilu</div>
+            <div class="item-description">Pro lepší výsledek můžete kalibrovat signál GPS, např. v aplikaci Mapy Google.</div>
         </li>
         <li>
-            <div class="item-title">Otvorte jeden z prehliadačov: Chrome alebo Firefox</div>
-            <div class="item-description">Iné typy prehliadačov nemajú garantovanú kompatibilitu s aplikáciou.</div>
+            <div class="item-title">Otevřete některý z prohlížečů: Chrome nebo Firefox</div>
+            <div class="item-description">U jiných typů prohlížečů není zaručena kompatibilita s aplikací.</div>
         </li>
         <li>
             <div class="item-title">
-                Kliknite na toto tlačidlo <button onclick="copyToClipboard()"><i class="fa fa-copy"></i></button> a spustite skopírovaný odkaz v otvorenom prehliadači
+              Klikněte na toto tlačítko <button onclick="copyToClipboard()"><i class="fa fa-copy"></i></button> a spusťte zkopírovaný odkaz v otevřeném prohlížeči.
+              Případně můžete zkopírovat a otevřít tento odkaz:
             </div>
             <div class="item-description">Prípadne môžete skopírovať a otvoriť tento odkaz: <a href="https://matobertko.github.io/location-based-ar-tutorial/app.html">https://matobertko.github.io/location-based-ar-tutorial/app.html</a></div>
         </li>
         <li>
-            <div class="item-title">Povoľte prehliadaču prístup k polohe a kamere</div>
+            <div class="item-title">Povolte prohlížeči přístup k umístění a fotoaparátu</div>
             <div class="item-description">
-                Povolenia sú nutné pre lepší zážitok z rozšírenej reality. 
-                Povolenie polohy slúži na presné umiestnenie modelu do križovatky 
-                a povolenie kamery na zobrazenie modelu v mobilnom zariadení.
-                Táto stránka nikdy neukladá a nikdy nebude ukladať informácie polohe či prípadne ukladať záznam z kamery zariadenia.
+              Povolení jsou vyžadována pro lepší zážitek z rozšířené reality.
+              Oprávnění k poloze slouží k přesnému umístění modelu v křižovatce a oprávnění ke kameře slouží k zobrazení modelu na mobilním zařízení.
+              Tato stránka nikdy neukládá a nebude ukládat informace o poloze ani případně ukládat záběry z kamery zařízení.
             </div>
         </li>
         <li>
-          <div class="item-title">Potvrďte vyskakovacie okno pre zobrazenie na mieste križovatky</div>
-          <div class="item-description">Po nepotvrdení vyskakovacieho okna sa model zobrazí na Vašej aktuálnej polohe</div>
+          <div class="item-title">Potvrďte vyskakovací okno pro zobrazení polohy křižovatky</div>
+          <div class="item-description">Pokud vyskakovací okno nepotvrdíte, zobrazí se model v místě vaší aktuální polohy.</div>
         </li>
         <li>
-            <div class="item-title">Prechádzajte sa po námestí</div>
-            <div class="item-description">V prípade problémov môžete nájsť riešenie v spodnej časti častých otázok a odpovedí,
-                prípadne môžete problémy / nápady / tipy adresovať na mail uvedeným v spodnej časti stránky.</div>
+            <div class="item-title">Projděte se po náměstí</div>
+            <div class="item-description">Pokud máte nějaké problémy, řešení najdete v dolní části často kladených otázek nebo můžete
+              problémy/nápady/tipové připomínky zaslat na e-mail uvedený v dolní části stránky.</div>
         </li>
     </ol>   
 
     <!-- OVLADANIE MODELU -->
-    <h2>Ovládanie modelu</h2> 
+    <h2>Ovládání modelu</h2> 
     <!-- <p>Môžete si taktiež vybrať, kde si zobrazíte v hornom ľavom rohu:</p> -->
     <!-- <p></p>
     <ol>
@@ -85,12 +85,12 @@
       </li>
     </ol> 
      -->
-    <p>V aplikácii sa nachádzajú 3 tlačidlá. Zapnutie tlačidla zobrazí prvok modelu znázornený na tlačidle. Aplikácia umožňuje skryť / zobraziť tieto objekty:</p>
+    <p>V aplikaci jsou k dispozici 3 tlačítka. Zapnutím tlačítka se zobrazí prvek modelu zobrazený na tlačítku. Aplikace umožňuje tyto objekty skrýt/zobrazit:</p>
     <!-- <p>Model dokážete ovládať pomocou týchto tlačidiel:</p>   -->
     <div class="buttons-showcase">
       <div class="button-container">
         <img src="infoButton.png" alt="tlačidlo pre informácie">
-        <p class="button-text">popis významných prvkov modelu</p>
+        <p class="button-text">popis významných prvků modelu</p>
       </div>
       <div class="button-container">
         <img src="treeButton.png" alt="tlačidlo pre stromy">
@@ -98,12 +98,12 @@
       </div>
       <div class="button-container">
         <img src="buildingButton.png" alt="tlačidlo pre budovu">
-        <p class="button-text">návrh budúcej budovy</p>
+        <p class="button-text">návrh budoucí budovy</p>
       </div>
     </div>     
 
     <!-- FAQ -->
-    <h2>Časté otázky a odpovede</h2>
+    <h2>Často kladené otázky a odpovědi</h2>
     <ol class="item-list">
         <!-- <li>
           <div class="item-title">Model sa nezobrazuje vôbec</div>
@@ -111,32 +111,36 @@
         </li> -->
         <li>
           <!-- Na pozadí modelu nie je vidno záznam z kamery -->
-          <div class="item-title">Pozadie za modelom je biele</div>
-          <div class="item-description">Najčastejšie ide o problém nepovolenej kamery v prehliadači. Ak ste v prehliadači kameru povolili, je možné že používate prehliadač, ktorý nie je podporovaný touto aplikáciou. Ak je to možné, skúste použiť buď prehliadač Chrome alebo Firefox.</div>
+          <div class="item-title">Pozadí za modelem je bílé</div>
+          <div class="item-description">Nejčastěji se jedná o problém neautorizovaného fotoaparátu v prohlížeči.
+            Pokud jste v prohlížeči povolili kameru, je možné, že používáte prohlížeč, který není touto aplikací podporován.
+            Pokud je to možné, zkuste použít prohlížeč Chrome nebo Firefox.
+          </div>
         </li>
         <li>
-          <div class="item-title">Model neustále mení pozíciu</div>
-          <div class="item-description">Skontroluje kvalitu GPS signálu, prípadne skúste kalibrovať mobilný kompas, napríklad pomocou aplikácie Google Maps.</div>
+          <div class="item-title">Model neustále mění polohu</div>
+          <div class="item-description">Zkontrolujte kvalitu signálu GPS nebo zkuste zkalibrovat mobilní kompas, například pomocí aplikace Google Maps.</div>
         </li>
         <li>
-          <div class="item-title">Chcem zmeniť umiestenie zobrazenia</div>
-          <div class="item-description">Jednoducho znova načítajte stránku a vyberte si novú lokáciu (ne)potvrdením vyskakovacieho okna s textom <q><i>Chcete zobraziť model na križovatke Křídlovická?</i></q>.</div>
+          <div class="item-title">Chci změnit umístění zobrazení</div>
+          <div class="item-description">Stačí znovu načíst stránku a zvolit novou polohu (ne)potvrzením vyskakovacího okna s textem <q><i>Chcete zobrazit model na křižovatce Křídlovická?</i></q>.</div>
         </li>
     </ol>   
     
     <!-- DOTAZNÍK -->
     <h2>Dotazník</h2>
     <p>
-      Svoju spätnú väzbu k projektu rekonštrukcie môžete poskytnúť v dotazníku dostupnom na tomto odkaze:
+      Svůj názor na projekt rekonstrukce můžete vyjádřit v dotazníku, který je k dispozici na tomto odkazu:
       <a href="https://forms.gle/kSZk95kTWBJbcwbV9">https://forms.gle/kSZk95kTWBJbcwbV9</a>
     </p>
     
     <!-- ABOUT -->
-    <h2>O projekte</h2>
+    <h2>O projektu</h2>
     <p>
-      Primárnym cieľom projektu je využitie moderných technológií k prispievaniu atraktivity mestského plánovania. 
-      Sekundárnym cieľom je integrácia obyvateľov do procesu vytvárania komunitného verejného priestoru.    
-      Tento projekt vznikol v rámci bakalárskej práce Fakulty informatiky Masarykovej univerzity v spolupráci so študentmi Fakulty architektúry VUT v Brne v roku 2023.   
+      Primárním cílem projektu je pomocí moderních technologií přispět k zatraktivnění městského plánování.
+      Sekundárním cílem je zapojení obyvatel do procesu tvorby komunitního veřejného prostoru.
+      Projekt vznikl v rámci bakalářské práce Fakulty informatiky Masarykovy univerzity ve spolupráci se studenty Fakulty architektury VUT v Brně v roce 2023.
+  
     </p>
 
     <!-- CONTACTS -->

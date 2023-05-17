@@ -6,23 +6,23 @@
 // ------------ CONTENT OF SIGNS ---------------
 let signsContent = [
     {
-        headline: "Fontána",
+        headline: "Kašna",
         description: "Litinová kašna původně stávala u domu č. p. 1 na Václavské ulici na Starém Brně. V osmdesátých letech minulého století kašna zmizela z původního místa a deset let se o ní nevědělo. V devadesátých letech byla znovu nalezena a postavena na současné místo na ulici Česká.\nPůvodně kašna sloužila k napájení zvířat, spodní nádržka pro psy, střední pro koně a horní pro ptáky.",
         position: "14 2.5 -7"
     },
     {
         headline: "Nová budova",
-        description: "Súčasná budova sa plánuje zbúrať a nahradiť ju má nová 5 podlažná administratívna budova.",
+        description: "Stávající budova má být zbourána a nahrazena novou šestipodlažní administrativní budovou.",
         position: "-11 2.5 4"
     },
     {
-        headline: "Vyvýšená križovatka",
-        description: "Vyvýšenie križovatky umožní spomalenie vozidiel do nej vchádzajúcich a zjednoduší pohyb peších.",
+        headline: "Zvýšená křižovatka",
+        description: "Zvýšení křižovatky umožní zpomalení vjíždějících vozidel a usnadní pohyb chodců.",
         position: "19 2.5 19"
     },
     {
-        headline: "Koše na triedený odpad",
-        description: "Nový mobiliár umožní triedenie odpadu.",
+        headline: "Koše na tříděný odpad",
+        description: "Nový mobiliář umožní třídění odpadu.",
         position: "28 2.5 28"
     }
 ];
@@ -42,7 +42,7 @@ window.onload = () => {
     let scene = document.querySelector('a-scene');
 
     // ------------ DECIDE GPS COORDINATES ---------
-    if (confirm('Chcete zobraziť model na križovatke Křídlovická?')) {
+    if (confirm('Chcete vidět model křižovatky Křídlovická?')) {
         console.log('Zobrazujem na kridlovickej');
     } else {
         console.log('Zobrazujem na polohe uzivatela');
