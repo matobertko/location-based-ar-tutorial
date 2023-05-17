@@ -1,9 +1,6 @@
-// -------- coords ------------------------
-// kridlovicka 49.188374, 16.597964
-// kridlovicka roh budovy: 49.1883144, 16.5977897
-// kridlovicka - presnejsia hodnota rohu: 49.188312, 16.597891
-
-// ------------ CONTENT OF SIGNS ---------------
+// -------------------------------------------------------------------
+//                         CONTENT OF SIGNS 
+// -------------------------------------------------------------------
 let signsContent = [
     {
         headline: "Kašna",
@@ -38,22 +35,22 @@ for (let level_number = 1; level_number <= 5; level_number++) {
 //                      AFTER LOADING THE PAGE 
 // -------------------------------------------------------------------
 window.onload = () => {
-    // ------------- get SCENE element -------------
+    // ------ get scene element ----------------------------------------------
     let scene = document.querySelector('a-scene');
 
-    // ------------ DECIDE GPS COORDINATES ---------
-    if (confirm('Chcete vidět model křižovatky Křídlovická?')) {
+    // ------ change GPS coords if needed ------------------------------------
+    if (confirm('Chcete vidět model přímo na křižovatce Křídlovická?')) {
         console.log('Zobrazujem na kridlovickej');
     } else {
         console.log('Zobrazujem na polohe uzivatela');
         useUsersGPSCoords(scene);
     }  
 
-    // -------- create signs -----------------------
+    // ------ create SIGNS iteratively and add them to crossroad entity ------
     createSigns(scene.querySelector('#crossroad'), signsContent);
     console.log('after signs creation');
 
-    // -------- manage VISUALISATION BUTTONS -------
+    // ------ manage VISUALISATION BUTTONS -----------------------------------
     let buttonInfo = document.querySelector('#buttonInfo');
     buttonInfo.addEventListener('click', function() {
         buttonInfo.style.opacity = (buttonInfo.style.opacity == 1) ? 0.5 : 1;
@@ -74,7 +71,7 @@ window.onload = () => {
         switchVisibility(scene.querySelector('#building'));
     });
     
-    // -------- manage loading popup -----------------
+    // ------ manage LOADING POPUP -------------------------------------------
     if (scene.hasLoaded) {
         pageLoaded();
     } else {
@@ -84,24 +81,34 @@ window.onload = () => {
 
 // --------------------------------------------------------------------------
 //                          HELPER FUNCTIONS
-//                      commenting: /** */
 // --------------------------------------------------------------------------
-
-// ------------- close 'please wait' div ----------------
+/**
+ * closes LOADER POPUP div 
+ */
 function pageLoaded () {
     console.log('site is loaded');
     document.getElementById('loader-overlay').style.display = 'none';
 }
 
-// ------------ use users location ----------------------
+/**
+ * Procedure sets new coordinates obtained from the user to all entities.
+ * In case of error (user denied GPS perm. / device doesnt provide GPS signal / ...) 
+ * coordinates dont change from default values.
+ * @param {object} scene - a-scene entity
+ */
 function useUsersGPSCoords(scene) {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
             function(position) {
                 lat = position.coords.latitude;
                 long = position.coords.longitude;
-                alert("dostal som GPS suradnice: " + lat + '; ' + long);
-                switchGPSCoords(scene, lat, long);
+                
+                // switch coords for all entities
+                let entities = scene.querySelectorAll("a-entity");
+                entities.forEach((entity) => {
+                    entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
+                });
+                console.log("Coordinates were switched");
             }, 
             function() {
                 console.log("Cannot get GPS coordinates");
@@ -111,16 +118,11 @@ function useUsersGPSCoords(scene) {
     }
 }
 
-function switchGPSCoords(scene, lat, long) {
-    let entities = scene.querySelectorAll("a-entity");
-    entities.forEach((entity) => {
-        entity.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${long};`);
-    });
-
-    console.log("Coordinates were switched");
-}
-
-// -------- CREATE SIGNS -------------------
+/**
+ * Inicial procedure, which creates information signs defined in 'signsContent' array
+ * @param {object} crossroad    - parent entity representing base model; contains all other model entities
+ * @param {object} signsContent - array with defined text for signs
+ */
 function createSigns(crossroad, signsContent) {
     signsContent.forEach(signContent => {
         // HEADLINE
@@ -159,17 +161,13 @@ function createSigns(crossroad, signsContent) {
             signDescription.setAttribute('visible', 'false');
             signHeadline.appendChild(signDescription);
         }
-
-        // const signBg = document.createElement("a-plane");
-        // signBg.setAttribute('position', '0 -0.7 -0.01');
-        // signBg.setAttribute('color', '#666');
-        // signBg.setAttribute('width', '3.2');
-        // signBg.setAttribute('height', '2');
-        // signHeadline.appendChild(signBg);
     });
 }
 
-// -------- ENTITY VISIBILITY SWITCHER --------
+/**
+ * Procedure switches visibility of the selected entity
+ * @param {object} asset - selected model entity  
+ */
 function switchVisibility(asset) {
     let visibleAttrValue = asset.getAttribute("visible");
     asset.setAttribute("visible", (!visibleAttrValue).toString());

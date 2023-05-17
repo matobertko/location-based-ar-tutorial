@@ -5,16 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brno v AR</title>
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="styles.css">
     <!-- FONTS -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Font+Name&display=swap" rel="stylesheet" type="text/css"> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;800&family=Open+Sans&display=swap" rel="stylesheet">
-
     <!-- ICONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
@@ -26,9 +22,7 @@
 
     <!-- SPUSTENIE MODELU -->
     <h2>Spuštění modelu v AR</h2>
-    
     <p class="hint">Pro více informací klikněte na položku v seznamu.</p>
-
     <ol>
         <li>
             <div class="item-title">Povolení přístupu k poloze v mobilu</div>
@@ -65,38 +59,18 @@
 
     <!-- OVLADANIE MODELU -->
     <h2>Ovládání modelu</h2> 
-    <!-- <p>Môžete si taktiež vybrať, kde si zobrazíte v hornom ľavom rohu:</p> -->
-    <!-- <p></p>
-    <ol>
-      <li>
-        <div class="item-title">Křídlovická</div>
-        <div class="item-description">GPS pozícia bude zodpovedať umiesteniu priamo na križovatke Křídlovická x Zahradnická.</div>
-      </li>
-      <li>
-        <div class="item-title">Vaša poloha</div>
-        <div class="item-description">
-          Model sa zobrazí na vašej aktuálnej pozícii. 
-          Po zapnutí tohto režimu sa nastaví pozícia modelu podľa GPS údajov v momente spustenia režimu. 
-          Znovanačítanie tohto režimu znova načíta vašu novú pozíciu (ak sa zmenila), preto odporúčame tento mód počas tohto zobrazenia nemeniť.
-          Odporúčame zobrazovať model v prípade dostatku miesta kvôli prechádzaniu sa skrz model križovatky. 
-          GPS zhoršuje svoju kvalitu vo vnútorných (indoor) pristoroch, preto odporúčame používať aplikáciu iba na vonkajších priestranstvách.
-        </div>
-      </li>
-    </ol> 
-     -->
     <p>V aplikaci jsou k dispozici 3 tlačítka. Zapnutím tlačítka se zobrazí prvek modelu zobrazený na tlačítku. Aplikace umožňuje tyto objekty skrýt/zobrazit:</p>
-    <!-- <p>Model dokážete ovládať pomocou týchto tlačidiel:</p>   -->
     <div class="buttons-showcase">
       <div class="button-container">
-        <img src="infoButton.png" alt="tlačidlo pre informácie">
+        <img src="infoButton.png" alt="tlačítko pro informace">
         <p class="button-text">popis významných prvků modelu</p>
       </div>
       <div class="button-container">
-        <img src="treeButton.png" alt="tlačidlo pre stromy">
+        <img src="treeButton.png" alt="tlačítko pro stromy">
         <p class="button-text">stromy</p>
       </div>
       <div class="button-container">
-        <img src="buildingButton.png" alt="tlačidlo pre budovu">
+        <img src="buildingButton.png" alt="tlačítko pro budovu">
         <p class="button-text">návrh budoucí budovy</p>
       </div>
     </div>     
@@ -104,12 +78,7 @@
     <!-- FAQ -->
     <h2>Často kladené otázky a odpovědi</h2>
     <ol class="item-list">
-        <!-- <li>
-          <div class="item-title">Model sa nezobrazuje vôbec</div>
-          <div class="item-description">riešenie 1</div>
-        </li> -->
         <li>
-          <!-- Na pozadí modelu nie je vidno záznam z kamery -->
           <div class="item-title">Pozadí za modelem je bílé</div>
           <div class="item-description">Nejčastěji se jedná o problém neautorizovaného fotoaparátu v prohlížeči.
             Pokud jste v prohlížeči povolili kameru, je možné, že používáte prohlížeč, který není touto aplikací podporován.
@@ -126,7 +95,7 @@
         </li>
     </ol>   
     
-    <!-- DOTAZNÍK -->
+    <!-- QUESTIONNAIRE -->
     <h2>Dotazník</h2>
     <p>
       Svůj názor na projekt rekonstrukce můžete vyjádřit v dotazníku, který je k dispozici na tomto odkazu:
@@ -139,12 +108,11 @@
       Primárním cílem projektu je pomocí moderních technologií přispět k zatraktivnění městského plánování.
       Sekundárním cílem je zapojení obyvatel do procesu tvorby komunitního veřejného prostoru.
       Projekt vznikl v rámci bakalářské práce Fakulty informatiky Masarykovy univerzity ve spolupráci se studenty Fakulty architektury VUT v Brně v roce 2023.
-  
     </p>
 
     <!-- CONTACTS -->
     <h2>Kontakt</h2> 
-    <p class="about">email: 514588@mail.muni.cz</p>  
+    <p class="about">email: <a href = "mailto: brnovar@gmail.com">brnovar@gmail.com</a></p>  
 
     <!------------------- SCRIPT ------------------->
     <script src="interaction.js"></script>

@@ -105,36 +105,14 @@
     display: none;
     margin-top: 10px;
     font-size: 14px;
-    /* text-align: justify;
-    word-wrap: break-word; */
+    word-wrap: break-word;
     color: #666666;
   }
   
   .item-description.open {
     display:inline-block;
-    /* word-break: break-all;    
-    overflow-wrap: break-word; */
     hyphens: auto;
   }
-
-  /* ----------- UNORDERED LIST ----------- */
-  /* ul {
-    list-style: none;
-   }
-
-  ul li::before {
-    content: "\2022";
-    font-size: 50px;
-    color: #666666;
-    vertical-align:middle;
-  } */
-
-  /*ul li {
-    margin-top: 10px;
-    margin-left: 30px;
-    color: #666666;
-    text-align: justify;
-  }*/
 
   /* ------------------ BUTTONS SHOWCASE -------------------- */
   .buttons-showcase {
